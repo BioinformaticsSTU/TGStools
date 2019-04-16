@@ -22,12 +22,17 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
+TGStools is a bioinformatics suit to facilitate transcriptome analysis of long reads from third generation sequencing platform.
 
 
 
 ----------------------------
 # Installation
 ----------------------------
+
+TGStools has been developed in Python 3.5. 
+
+If necessary, to install python3 we recommend to download from the official site https://www.python.org/downloads/ the corresponding version for your OS.
 
 
 
