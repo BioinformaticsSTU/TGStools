@@ -9,7 +9,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [main](#main)
+      * [incp](#incp)
       * [extract_lncRNA_gtf](#extract_lncrna_gtf)
       * [tiss_specific](#tiss_specific)
       * [staAS](#staas)
@@ -58,7 +58,7 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## main
+## incp
 ----------------------------
 
 an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
@@ -91,9 +91,9 @@ Note: fasta file format must be the twolineFasta
 
 ### Usage
 ```
-python3 main.py -f <file> -p <parallel> -d <directory> -g
+python3 TGStools.py incp -f <file> -p <parallel> -d <directory> -g
 or 
-python3 main.py -f <file> -p <parallel>
+python3 TGStools.py incp -f <file> -p <parallel>
 ```
 
 - **-f**  | **--file**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -106,9 +106,9 @@ python3 main.py -f <file> -p <parallel>
 
 ### Example
 ```
-python3 main.py -f candidate.gtf -p 6 -g -d hg38.2bit
+python3 TGStools.py incp -f candidate.gtf -p 6 -g -d hg38.2bit
 or 
-python3 main.py -f candidate.fasta -p 6
+python3 TGStools.py incp -f candidate.fasta -p 6
 ```
 
 ### Output files
@@ -116,17 +116,16 @@ python3 main.py -f candidate.fasta -p 6
 mainly contains 4 files
 
 #### input_no_suffix directory
-the name is the intput file name without suffix. it contain the file of CNCI.index, which is the result of the software CNCI output.
+directory of the CNCI output result.
 
 #### input_no_suffix_PLEK
-which is the result of the software PLEK output.
+directory of the PLEK output result.
 
 #### input_no_suffix_union_plek_cnci.txt
-the output of union of the software CNCI and PLEK, in which the first column is the tanscript ID
+output of union of the software CNCI and PLEK, in which the first column is the tanscript ID
 
 #### input_no_suffix_intersect_plek_cnci.txt
-the output of intersect of the software CNCI and PLEK, in which the first column is the tanscript ID
-
+output of intersect of the software CNCI and PLEK, in which the first column is the tanscript ID
 
 ----------------------------
 ## extract_lncRNA_gtf
