@@ -35,7 +35,24 @@ TGStools has been developed in Python 3.5.
 If necessary, to install python3 we recommend to download from the official site https://www.python.org/downloads/ the corresponding version for your OS.
 
 
+----------------------------
+# Command and subcommand structure
+----------------------------
 
+TGStools works with a command/subcommand structure:
+
+```
+python3 TGStools.py subcommand options
+
+```
+where the subcommand can be one of these:
+
+- **main**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
+- **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
+- **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
+- **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
+- **calScoreD**     : calculate score_D of each gene.
+- **GOenrich**     : select top genes and make GO enrichment analysis.
 
 
 ----------------------------
