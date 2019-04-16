@@ -62,7 +62,7 @@ where the subcommand can be one of these:
 ### Input files
 
 #### hg19.2bit and hg38.2bit
-hg19.2bit and hg38.2bit are 2bit formate of human genomes which can be downloaded on UCSC.
+hg19.2bit and hg38.2bit are 2bit format of human genomes which can be downloaded on UCSC.
 
 #### gtf file
 An annotation file in GTF format is like:
