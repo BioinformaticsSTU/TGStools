@@ -9,7 +9,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [staAS](#staAS)
+      * [staAS](#staas)
       * [calScoreD](#calScoreD)
       * [GOenrich](#GOenrich)
 
@@ -169,9 +169,9 @@ python3 tiss_specific.py -f sample.gtf -t breast -o out.gtf
 GTF file which extract lncRNA-specific information
 
 ----------------------------
-## staAS: calculate the proportion of each alternative splicing event in different samples and create graphs.
+## staAS
 ----------------------------
-
+calculate the proportion of each alternative splicing event in different samples and create graphs.
 ### Input files
 
 #### gtf file
