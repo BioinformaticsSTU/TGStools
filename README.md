@@ -58,7 +58,7 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## main.py
+## main
 ----------------------------
 
 an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
