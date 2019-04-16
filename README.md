@@ -9,7 +9,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [staAS](#staAS)
+      * [staAS](##staAS)
       * [calScoreD](#calScoreD)
       * [GOenrich](#GOenrich)
 
