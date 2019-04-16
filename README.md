@@ -9,6 +9,9 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
+      * [main](#main)
+      * [extract_lncRNA_gtf](#extract_lncrna_gtf)
+      * [tiss_specific](#tiss_specific)
       * [staAS](#staas)
       * [calScoreD](#calscored)
       * [GOenrich](#goenrich)
@@ -22,8 +25,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
-TGStools is a bioinformatics suit to facilitate transcriptome analysis of long reads from third generation sequencing platform.
-
+The third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
 
 
 ----------------------------
@@ -56,8 +58,10 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## main.py: an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
+## main.py
 ----------------------------
+
+an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
 
 ### Input files
 
@@ -125,8 +129,10 @@ the output of intersect of the software CNCI and PLEK, in which the first column
 
 
 ----------------------------
-## extract_lncRNA_gtf.py: A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA
+## extract_lncRNA_gtf
 ----------------------------
+
+A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA
 
 ### Input files
 
@@ -155,8 +161,10 @@ python3 extract_lncRNA_gtf.py -f test.index -g unannotation.gtf -o out
 output file extract lncRNA information of GTF format
 
 ----------------------------
-## tiss_specific.py : A tool that extract cancer-specific lncRNA information of GTF format
+## tiss_specific
 ----------------------------
+
+A tool that extract cancer-specific lncRNA information of GTF format
 
 ### Input files
 
