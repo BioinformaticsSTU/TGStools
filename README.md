@@ -10,8 +10,8 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
       * [staAS](#staas)
-      * [calScoreD](#calScoreD)
-      * [GOenrich](#GOenrich)
+      * [calScoreD](#calscored)
+      * [GOenrich](#goenrich)
 
    * [License](#license)
 
@@ -222,8 +222,10 @@ TEST_bar.png
 TEST_barh_align.png
 
 ----------------------------
-## calScoreD: calculate score_D of each gene.
+## calScoreD
 ----------------------------
+
+calculate score_D of each gene
 
 ### Input files
 
@@ -268,8 +270,10 @@ To quantify the differential isoform usage between cells, we defined the score D
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
 
 ----------------------------
-## GOenrich: select top genes and make GO enrichment analysis
+## GOenrich
 ----------------------------
+
+select top genes and make GO enrichment analysis
 
 ### Input files
 
