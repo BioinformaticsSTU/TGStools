@@ -131,13 +131,20 @@ output of intersect of the software CNCI and PLEK, in which the first column is 
 ## extract_lncRNA_gtf
 ----------------------------
 
-A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA
+A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
 
 ### Input files
 
 #### index index
 input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA.
-
+```
+ENSG00000174151_novel02 noncoding       -0.047104       2124    2604    2758
+ENSG00000118482_novel01 coding  0.084   0       1512    2792
+ENSG00000118482_novel02 coding  0.073   0       1455    2120
+ENSG00000118482_novel04 coding  0.064   0       1695    2979
+ENSG00000118482_novel06 noncoding       -0.047104       2718    2922    3078
+ENSG00000118482_novel07 noncoding       -0.0217088      2166    2355    2510
+```
 #### gtf file
 
 ### Usage
@@ -154,6 +161,8 @@ python3 extract_lncRNA_gtf.py -f <file> -g <gtf> -o <out>
 ### Example
 ```
 python3 extract_lncRNA_gtf.py -f test.index -g unannotation.gtf -o out
+or
+python3 extract_lncRNA_gtf.py -f intersect_plek_cnci.txt -g unannotation.gtf -o out
 ```
 
 ### Output files
