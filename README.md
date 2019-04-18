@@ -287,14 +287,14 @@ The command line to generate local AS events will be of the form:
 
 ### Example
 ```
-python3 TGStools.py calScoreD -c control -t treated1,treated2 -p TEST
+python3 TGStools.py calScoreD -c K140 -t K510,SEC -p TEST
 ```
 
 ### Output files
 
 TEST_score_D.txt
 ```
-	control_transcripts	treated1_transcripts	treated1_score	treated2_transcripts	treated2_score	
+	K140_transcripts	K510_transcripts	K510_score	SEC_transcripts	SEC_score	
 ENSG00000151466	ENST00000281142,ENST00000506368	ENST00000281142,ENST00000511426	0.667	ENST00000506368,ENST00000511426	0.667	1.334
 ENSG00000128059	ENST00000264220	ENST00000264220	0	ENST00000264220	0	0
 ENSG00000033178	ENST00000322244,ENST00000429659	ENST00000322244,ENST00000429659	0	ENST00000322244,ENST00000429659	0	0
