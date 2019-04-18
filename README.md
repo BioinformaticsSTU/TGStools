@@ -269,7 +269,7 @@ calculate score_D of each gene
 ### Input files
 
 #### ioi file
-ioi file contains the transcript "events" in each gene.
+ioi file contains the transcript "events" of gene. produced by staAS, cantained in *_Event dietctory.
 
 ### Usage
 ```
