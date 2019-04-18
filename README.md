@@ -236,7 +236,7 @@ The command line to generate local AS events will be of the form:
 
 ### Example
 ```
-python3 TGStools.py staAS -n K140,K510,SEC,SHEE,TE5 -p TEST
+python3 TGStools.py staAS -n K140.gtf,K510.gtf,SEC.gtf,SHEE.gtf,TE5.gtf -p TEST
 ```
 
 ### Output files
