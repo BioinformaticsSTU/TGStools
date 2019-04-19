@@ -49,7 +49,7 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **main**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
+- **incp**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
@@ -149,20 +149,20 @@ ENSG00000118482_novel07 noncoding       -0.0217088      2166    2355    2510
 
 ### Usage
 ```
-python3 extract_lncRNA_gtf.py -f <file> -g <gtf> -o <out>
+python3 TGStools.py extract_lncRNA_gtf -f <file> -g <gtf> -o <out>
 ```
 
-- **-f**  | **--file**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of CNCI.py
+- **-f**  | **--file**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of CNCI
 
-- **-g**  | **--gtf**: GTF file corresponding to fasta in the main.py, where the last column contain the tanscript ID
+- **-g**  | **--gtf**: GTF file corresponding to fasta in the incp, where the last column contain the tanscript ID
 
 - **-o**  | **--out**: output file extract lncRNA information of GTF format
 
 ### Example
 ```
-python3 extract_lncRNA_gtf.py -f test.index -g unannotation.gtf -o out
+python3 TGStools.py extract_lncRNA_gtf -f test.index -g unannotation.gtf -o out
 or
-python3 extract_lncRNA_gtf.py -f intersect_plek_cnci.txt -g unannotation.gtf -o out
+python3 TGStools.py extract_lncRNA_gtf -f intersect_plek_cnci.txt -g unannotation.gtf -o out
 ```
 
 ### Output files
@@ -184,9 +184,9 @@ files of the candidate lncRNA gtf format.
 
 ### Usage
 ```
-python3 tiss_specific.py -f <file> <file> -t <tss> -o <out>
+python3 TGStools.py tiss_specific -f <file> <file> -t <tss> -o <out>
 or 
-python3 tiss_specific.py -f <file> -t <tss> -o <out>
+python3 TGStools.py tiss_specific -f <file> -t <tss> -o <out>
 ```
 
 - **-f**  | **--file**: input files of the candidate lncRNA gtf format, if the input files have two, the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
@@ -197,9 +197,9 @@ python3 tiss_specific.py -f <file> -t <tss> -o <out>
 
 ### Example
 ```
-python3 tiss_specific.py -f control.gtf sample.gtf -t breast -o out.gtf
+python3 TGStools.py tiss_specific -f control.gtf sample.gtf -t breast -o out.gtf
 or 
-python3 tiss_specific.py -f sample.gtf -t breast -o out.gtf
+python3 TGStools.py tiss_specific -f sample.gtf -t breast -o out.gtf
 
 ```
 
