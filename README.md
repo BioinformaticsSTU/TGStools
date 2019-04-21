@@ -9,7 +9,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [incp](#incp)
+      * [INCP](#INCP)
       * [extract_lncRNA_gtf](#extract_lncrna_gtf)
       * [tiss_specific](#tiss_specific)
       * [staAS](#staas)
@@ -58,7 +58,7 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## incp
+## INCP
 ----------------------------
 
 an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
@@ -91,9 +91,9 @@ Note: fasta file format must be the twolineFasta
 
 ### Usage
 ```
-python3 TGStools.py incp -f <file> -p <parallel> -d <directory> -g
+python3 TGStools.py INCP -f <file> -p <parallel> -r <reference > -g
 or 
-python3 TGStools.py incp -f <file> -p <parallel>
+python3 TGStools.py INCP -f <file> -p <parallel>
 ```
 
 - **-f**  | **--file**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -102,13 +102,13 @@ python3 TGStools.py incp -f <file> -p <parallel>
 
 - **-g**  | **--gtf**: if your input file is gtf format please use this parameter
 
-- **-d**  | **--directory**: if you use the -g  this parameter must be assigned, within this parameter please assign the path of your reference genome. Some reference files which has been prepared could be download at [hg38](hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit), [hg19](hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit).
+- **-r**  | **--reference**: if you use the -g this parameter must be assigned, within this parameter please assign the path of your reference genome. Some reference files which has been prepared could be download at [hg38](hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit), [hg19](hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit).
 
 ### Example
 ```
-python3 TGStools.py incp -f candidate.gtf -p 6 -g -d hg38.2bit
+python3 TGStools.py INCP -f candidate.gtf -p 6 -g -d hg38.2bit
 or 
-python3 TGStools.py incp -f candidate.fasta -p 6
+python3 TGStools.py INCP -f candidate.fasta -p 6
 ```
 
 ### Output files
@@ -126,6 +126,12 @@ output of union of the software CNCI and PLEK, in which the first column is the 
 
 #### input_no_suffix_intersect_plek_cnci.txt
 output of intersect of the software CNCI and PLEK, in which the first column is the tanscript ID
+
+#### venny_plek_cnci.pdf 
+the summary of the venny between the output of the CNCI and PLEK
+
+venny image
+
 
 ----------------------------
 ## extract_lncRNA_gtf
@@ -149,14 +155,14 @@ ENSG00000118482_novel07 noncoding       -0.0217088      2166    2355    2510
 
 ### Usage
 ```
-python3 TGStools.py extract_lncRNA_gtf -f <file> -g <gtf> -o <out>
+python3 TGStools.py extract_lncRNA_gtf -i <file> -g <gtf> -o <out>
 ```
 
-- **-f**  | **--file**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of CNCI
+- **-i**  | **--input**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of INCP
 
 - **-g**  | **--gtf**: GTF file corresponding to fasta in the incp, where the last column contain the tanscript ID
 
-- **-o**  | **--out**: output file extract lncRNA information of GTF format
+- **-o**  | **--out**: output name extracted lncRNA information of GTF format
 
 ### Example
 ```
@@ -189,11 +195,13 @@ or
 python3 TGStools.py tiss_specific -f <file> -t <tss> -o <out>
 ```
 
-- **-f**  | **--file**: input files of the candidate lncRNA gtf format, if the input files have two, the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
+- **-i**  | **--input**: input files of the candidate lncRNA gtf format, if the input files have two splited by ',', the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
 
-- **-t**  | **--tss**: set tissue name. The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'. 
+- **-t**  | **--tissue**: set tissue name if input files have the only one. If there are two input files, this parameter can be ignored.The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
 
-- **-o**  | **--out**: output file which extract lncRNA-specific information of GTF format
+- **-r**  | **--reference**: set refgene name,'hg38' and 'hg19' can be chosen.
+
+- **-o**  | **--out**: output name extracted lncRNA-specific information of GTF format
 
 ### Example
 ```
