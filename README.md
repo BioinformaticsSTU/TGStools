@@ -9,6 +9,8 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
+      * [plot](#plot)
+      * [sta](#sta)
       * [INCP](#INCP)
       * [extract_lncRNA_gtf](#extract_lncrna_gtf)
       * [tiss_specific](#tiss_specific)
@@ -49,12 +51,90 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
+- **plot**    :
+- **sta**    :
 - **incp**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
 - **calScoreD**     : calculate score_D of each gene.
 - **GOenrich**     : select top genes and make GO enrichment analysis.
+
+
+----------------------------
+## plot
+----------------------------
+
+Users upload GTF files, input the gene name of the query, input the additional id2id.xls files (the number of transcripts) of the genes, and get the macroscopic image showing the information of gene transcripts. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
+
+### Input files
+
+#### gtf file
+An annotation file in GTF format is like:
+
+```
+chr14 Ensembl exon  73741918  73744001  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
+chr14 Ensembl exon  73749067  73749213  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1";  
+chr14 Ensembl exon  73750789  73751082  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
+chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
+```
+
+#### path of histone or fatom5
+
+#### gene id
+
+#### id2id
+
+
+### Usage
+```
+python3 TGStools.py plot -g <gtf> -i <gene_id> -t <id2id> -p <path>
+```
+
+- **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
+
+- **-i**  | **--gtf**: 
+
+- **-t**  | **--gtf**: 
+
+- **-p**  | **--path**: 
+
+### Example
+```
+python3 TGStools.py plot -g K510_3rd.gtf  -i ENSG00000196455 -t K510_3rd.id2id.xls  -p histone
+```
+
+----------------------------
+## sta
+----------------------------
+
+statistical tables and histone/fantom5 histone files
+
+### Input files
+
+#### gtf file
+
+
+
+### Usage
+```
+python3 TGStools.py sta -g <gtf> -p <path> -f <flag>
+```
+
+- **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
+
+- **-p**  | **--path**: 
+
+- **-f**  | **--flag**: 
+
+
+### Example
+```
+python3 TGStools.py sta -g K510_3rd.gtf  -p histone  -f HISTONE
+or
+python3 TGStools.py sta -g K510_3rd.gtf  -p fantom5  -f FANTOM5
+```
+
 
 
 ----------------------------
