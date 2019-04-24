@@ -142,6 +142,7 @@ python3 TGStools.py sta -g K510_3rd.gtf  -p fantom5  -f FANTOM5
 ----------------------------
 
 an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
+**This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
@@ -258,7 +259,8 @@ output file extract lncRNA information of GTF format
 ## tiss_specific
 ----------------------------
 
-A tool that extract cancer-specific lncRNA information of GTF format
+A tool that extract cancer-specific lncRNA information of GTF format.
+**If you want to run this step faster, skip the parameter -t.**
 
 ### Input files
 
