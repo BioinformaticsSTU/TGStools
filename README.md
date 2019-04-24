@@ -51,9 +51,9 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **plot**    :
-- **sta**    :
-- **incp**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
+- **geneDisplay**    :
+- **staDist**    :
+- **INCP**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
@@ -101,8 +101,16 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -t <id2id> -p <path>
 
 ### Example
 ```
-python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000196455 -t K510_3rd.id2id.xls  -p histone
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -t K510_3rd.id2id.xls  -p histone
 ```
+
+### Output files
+
+
+#### display of transcripts
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "500" height = "400"  />
+ENSG00000035141.png
+
 
 ----------------------------
 ## staDist
@@ -337,11 +345,11 @@ TE5	1922    1870    4182    611     328     2553    4288
 ```
 
 #### bar image
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/bar.png" width = "500" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_bar.1.png" width = "500" height = "400"  />
 TEST_bar.png
 
 #### barh_align image
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/barh_align.png" width = "400" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_barh_align.1.png" width = "400" height = "400"  />
 TEST_barh_align.png
 
 ----------------------------
@@ -435,11 +443,11 @@ GO_Biological_Process_2018	double-strand break repair (GO:0006302)	11/142	0.0002
 ```
 
 #### barh image
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/GO enrichment barh.png"  width="550" height="450" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_barh.png"  width="550" height="450" />
 TEST_GO_enrichment_barh.png
 
 #### scatter image
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/GO enrichment scatter.png" width="550" height="400" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_scatter.png" width="550" height="400" />
 TEST_GO_enrichment_scatter.png
 
 
