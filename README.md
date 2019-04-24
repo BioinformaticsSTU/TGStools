@@ -9,8 +9,8 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [plot](#plot)
-      * [sta](#sta)
+      * [geneDisplay](#geneDisplay)
+      * [staDist](#staDist)
       * [INCP](#INCP)
       * [extract_lncRNA_gtf](#extract_lncrna_gtf)
       * [tiss_specific](#tiss_specific)
@@ -62,7 +62,7 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## plot
+## geneDisplay
 ----------------------------
 
 Users upload GTF files, input the gene name of the query, input the additional id2id.xls files (the number of transcripts) of the genes, and get the macroscopic image showing the information of gene transcripts. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
@@ -88,7 +88,7 @@ chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; trans
 
 ### Usage
 ```
-python3 TGStools.py plot -g <gtf> -i <gene_id> -t <id2id> -p <path>
+python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -t <id2id> -p <path>
 ```
 
 - **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -101,11 +101,11 @@ python3 TGStools.py plot -g <gtf> -i <gene_id> -t <id2id> -p <path>
 
 ### Example
 ```
-python3 TGStools.py plot -g K510_3rd.gtf  -i ENSG00000196455 -t K510_3rd.id2id.xls  -p histone
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000196455 -t K510_3rd.id2id.xls  -p histone
 ```
 
 ----------------------------
-## sta
+## staDist
 ----------------------------
 
 statistical tables and histone/fantom5 histone files
@@ -118,7 +118,7 @@ statistical tables and histone/fantom5 histone files
 
 ### Usage
 ```
-python3 TGStools.py sta -g <gtf> -p <path> -f <flag>
+python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 ```
 
 - **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -130,9 +130,9 @@ python3 TGStools.py sta -g <gtf> -p <path> -f <flag>
 
 ### Example
 ```
-python3 TGStools.py sta -g K510_3rd.gtf  -p histone  -f HISTONE
+python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f HISTONE
 or
-python3 TGStools.py sta -g K510_3rd.gtf  -p fantom5  -f FANTOM5
+python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f FANTOM5
 ```
 
 
