@@ -112,7 +112,7 @@ python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q K510_3rd.
 
 
 #### display of transcripts
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "500" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "550" height = "400"  />
 ENSG00000035141.png
 
 
@@ -223,7 +223,7 @@ output of intersect of the software CNCI and PLEK, in which the first column is 
 #### venny_plek_cnci.pdf 
 the summary of the venny between the output of the CNCI and PLEK
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/venn.png" width = "500" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/venn.png" width = "550" height = "400"  />
 
 venny image
 
@@ -448,11 +448,11 @@ GO_Biological_Process_2018	double-strand break repair (GO:0006302)	11/142	0.0002
 ```
 
 #### barh image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_barh.png"  width="550" height="450" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_barh.png"  width="600" height="450" />
 TEST_GO_enrichment_barh.png
 
 #### scatter image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_scatter.png" width="550" height="400" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_scatter.png" width="600" height="400" />
 TEST_GO_enrichment_scatter.png
 
 
