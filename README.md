@@ -65,7 +65,7 @@ where the subcommand can be one of these:
 ## geneDisplay
 ----------------------------
 
-Users upload GTF files, input the gene name of the query, input the additional id2id.xls files (the number of transcripts) of the genes, and get the macroscopic image showing the information of gene transcripts. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
+input GTF files, gene id and trans_quant files(quantity of transcripts), then the macroscopic image showing the expression of transcripts of queried gene can be gotten. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
 
 ### Input files
 
@@ -79,29 +79,33 @@ chr14 Ensembl exon  73750789  73751082  0.0 - . gene_id "ENSG00000000001"; trans
 chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
 ```
 
-#### path of histone or fatom5
+#### path of histone files or fatom5 files
 
-#### gene id
-
-#### id2id
-
+#### trans_quant
+```
+i2_LQ_K5103rd_c89674/f1p10/3040	ENSG00000230183_novel01	ENSG00000230183
+i3_LQ_K5103rd_c15439/f1p0/3034	ENSG00000230183_novel01	ENSG00000230183
+i3_LQ_K5103rd_c13337/f1p5/3578	ENST00000489294	ENSG00000152332
+i2_LQ_K5103rd_c68909/f4p3/2516	ENST00000489294	ENSG00000152332
+i2_LQ_K5103rd_c52655/f1p22/2851	ENST00000489294	ENSG00000152332
+```
 
 ### Usage
 ```
-python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -t <id2id> -p <path>
+python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 ```
 
-- **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
+- **-g**  | **--gtf**: gtf file
 
-- **-i**  | **--gtf**: 
+- **-i**  | **--id**: gene id thao you want to query
 
-- **-t**  | **--gtf**: 
+- **-q**  | **--quant**: quantity of transcript
 
-- **-p**  | **--path**: 
+- **-p**  | **--path**: path of histone files or fatom5 files
 
 ### Example
 ```
-python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -t K510_3rd.id2id.xls  -p histone
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q K510_3rd.id2id.xls  -p histone
 ```
 
 ### Output files
@@ -122,7 +126,7 @@ statistical tables and histone/fantom5 histone files
 
 #### gtf file
 
-
+#### path of histone files or fatom5 files
 
 ### Usage
 ```
@@ -131,16 +135,16 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 - **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
-- **-p**  | **--path**: 
+- **-p**  | **--path**: path of histone files or fatom5 files
 
-- **-f**  | **--flag**: 
+- **-f**  | **--flag**: flag that tells programme the type of files in path
 
 
 ### Example
 ```
-python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f HISTONE
+python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone
 or
-python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f FANTOM5
+python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
 ```
 
 
@@ -180,9 +184,9 @@ Note: fasta file format must be the twolineFasta
 
 ### Usage
 ```
-python3 TGStools.py INCP -f <file> -p <parallel> -r <reference > -g
+python3 TGStools.py INCP -i <file> -p <parallel> -r <reference> -g
 or 
-python3 TGStools.py INCP -f <file> -p <parallel>
+python3 TGStools.py INCP -i <file> -p <parallel>
 ```
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -219,8 +223,9 @@ output of intersect of the software CNCI and PLEK, in which the first column is 
 #### venny_plek_cnci.pdf 
 the summary of the venny between the output of the CNCI and PLEK
 
-venny image
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/venn.png" width = "500" height = "400"  />
 
+venny image
 
 ----------------------------
 ## extract_lncRNA_gtf
