@@ -177,7 +177,7 @@ or
 python3 TGStools.py INCP -f <file> -p <parallel>
 ```
 
-- **-f**  | **--file**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
+- **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
 - **-p**  | **--parallel**: assign the running CUP numbers
 
@@ -187,14 +187,14 @@ python3 TGStools.py INCP -f <file> -p <parallel>
 
 ### Example
 ```
-python3 TGStools.py INCP -f candidate.gtf -p 6 -g -d hg38.2bit
+python3 TGStools.py INCP -i candidate.gtf -p 6 -g -d hg38.2bit
 or 
-python3 TGStools.py INCP -f candidate.fasta -p 6
+python3 TGStools.py INCP -i candidate.fasta -p 6
 ```
 
 ### Output files
 
-mainly contains 4 files
+mainly contains 4 files and 1 directory
 
 #### input_no_suffix directory
 directory of the CNCI output result.
@@ -247,9 +247,7 @@ python3 TGStools.py extract_lncRNA_gtf -i <file> -g <gtf> -o <out>
 
 ### Example
 ```
-python3 TGStools.py extract_lncRNA_gtf -f test.index -g unannotation.gtf -o out
-or
-python3 TGStools.py extract_lncRNA_gtf -f intersect_plek_cnci.txt -g unannotation.gtf -o out
+python3 TGStools.py extract_lncRNA_gtf -i intersect_plek_cnci.txt -g unannotation.gtf -o out
 ```
 
 ### Output files
@@ -260,6 +258,7 @@ output file extract lncRNA information of GTF format
 ----------------------------
 
 A tool that extract cancer-specific lncRNA information of GTF format.
+
 **If you want to run this step faster, skip the parameter -t.**
 
 ### Input files
@@ -272,9 +271,7 @@ files of the candidate lncRNA gtf format.
 
 ### Usage
 ```
-python3 TGStools.py tiss_specific -f <file> <file> -t <tss> -o <out>
-or 
-python3 TGStools.py tiss_specific -f <file> -t <tss> -o <out>
+python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tss>] -r <reference> -o <out>
 ```
 
 - **-i**  | **--input**: input files of the candidate lncRNA gtf format, if the input files have two splited by ',', the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
@@ -287,10 +284,7 @@ python3 TGStools.py tiss_specific -f <file> -t <tss> -o <out>
 
 ### Example
 ```
-python3 TGStools.py tiss_specific -f control.gtf sample.gtf -t breast -o out.gtf
-or 
-python3 TGStools.py tiss_specific -f sample.gtf -t breast -o out.gtf
-
+python3 TGStools.py tiss_specific -f sample.gtf[,control.gtf] -t breast -o out.gtf
 ```
 
 ### Output files
