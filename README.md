@@ -27,18 +27,19 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
-The third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
+Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
 
 
 ----------------------------
 # Installation
 ----------------------------
 
-TGStools has been developed in Python 3.5. 
+TGStools has been developed in Python 3.5. It is strongly recommended to install TGStools in conda environment.
 
-If necessary, to install python3 we recommend to download from the official site https://www.python.org/downloads/ the corresponding version for your OS.
-
-
+It is simple to install TGStools. By running setup.sh, depedency will be installed automatically.
+```
+./setup.sh
+```
 ----------------------------
 # Command and subcommand structure
 ----------------------------
@@ -97,7 +98,7 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 - **-g**  | **--gtf**: gtf file
 
-- **-i**  | **--id**: gene id thao you want to query
+- **-i**  | **--id**: gene id that you want to query
 
 - **-q**  | **--quant**: quantity of transcript
 
@@ -231,7 +232,7 @@ venny image
 ## extract_lncRNA_gtf
 ----------------------------
 
-A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
+extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
 
 ### Input files
 
@@ -270,7 +271,7 @@ output file extract lncRNA information of GTF format
 ## tiss_specific
 ----------------------------
 
-A tool that extract cancer-specific lncRNA information of GTF format.
+extract cancer-specific lncRNA information of GTF format
 
 **If you want to run this step faster, skip the parameter -t.**
 
