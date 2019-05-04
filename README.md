@@ -148,7 +148,10 @@ or
 python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
 ```
 
+### Output files
 
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/staDist.png" width = "550" height = "400"  />
+staDist.png
 
 ----------------------------
 ## INCP
