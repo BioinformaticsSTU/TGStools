@@ -51,8 +51,8 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **geneDisplay**    :
-- **staDist**    :
+- **geneDisplay**    : create a macroscopic image showing transcripts of queried gene
+- **staDist**    : statistics the distance of transcript-start-site to the closest histone or fantom5
 - **INCP**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
@@ -65,7 +65,7 @@ where the subcommand can be one of these:
 ## geneDisplay
 ----------------------------
 
-input GTF files, gene id and trans_quant files(quantity of transcripts), then the macroscopic image showing the expression of transcripts of queried gene can be gotten. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
+input GTF files, gene id and trans_quant files(quantity of transcripts) to get the macroscopic image which display the transcripts expression of queried gene. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
 
 ### Input files
 
@@ -101,11 +101,11 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 - **-q**  | **--quant**: quantity of transcript
 
-- **-p**  | **--path**: path of histone files or fatom5 files
+- **-p**  | **--path**: directory which contain histone files or fatom5 files
 
 ### Example
 ```
-python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q K510_3rd.id2id.xls  -p histone
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
 ```
 
 ### Output files
@@ -120,13 +120,13 @@ ENSG00000035141.png
 ## staDist
 ----------------------------
 
-statistical tables and histone/fantom5 histone files
+statistics the distance of transcript start site to the closest histone or fantom5
 
 ### Input files
 
 #### gtf file
 
-#### path of histone files or fatom5 files
+#### directory which contain histone files or fatom5 files
 
 ### Usage
 ```
@@ -135,7 +135,7 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 - **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
-- **-p**  | **--path**: path of histone files or fatom5 files
+- **-p**  | **--path**: directory which contain histone files or fatom5 files
 
 - **-f**  | **--flag**: flag that tells programme the type of files in path
 
