@@ -58,15 +58,15 @@ where the subcommand can be one of these:
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
-- **calScoreD**     : calculate score_D of each gene.
-- **GOenrich**     : select top genes and make GO enrichment analysis.
+- **calScoreD**     : calculate score_D(its formula can be seen below) of each gene.
+- **GOenrich**     : select top genes and do GO enrichment analysis.
 
 
 ----------------------------
 ## geneDisplay
 ----------------------------
 
-input GTF files, gene id and trans_quant files(quantity of transcripts) to get the macroscopic image which display the transcripts expression of queried gene. Similar to UCSC's gene query, users can choose to input multiple epigenetic data in the same folder, and make statistical drawings of the transcripts and epigenetic data under the gene.
+By providing GTF files, gene id and trans_quant files(quantity of transcripts) to get the macroscopic image which display the transcripts expression of queried gene. Similar to UCSC's gene query, users could provide multiple epigenetic data in the same folder, and transcripts and epigenetic data will be drawn under the gene.
 
 ### Input files
 
@@ -112,9 +112,9 @@ python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_qua
 ### Output files
 
 
-#### display of transcripts
+#### display of transcripts expression
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "550" height = "400"  />
-ENSG00000035141.png
+ENSG00000035141.pdf
 
 
 ----------------------------
@@ -151,7 +151,7 @@ python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
 ### Output files
 
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/staDist.png" width = "550" height = "400"  />
-staDist.png
+staDist.pdf
 
 ----------------------------
 ## INCP
