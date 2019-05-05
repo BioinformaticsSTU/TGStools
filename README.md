@@ -36,7 +36,7 @@ Third generation sequencing can de novo detect long reads of several thousand ba
 
 TGStools has been developed in Python 3.5. It is strongly recommended to install TGStools in conda environment.
 
-It is simple to install TGStools. By running setup.sh, depedency will be installed automatically.
+It is simple to install TGStools. By running setup.sh, depedency(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
 ```
 ./setup.sh
 ```
