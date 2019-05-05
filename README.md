@@ -367,6 +367,12 @@ TEST_barh_align.png
 
 calculate score_D of each gene
 
+To quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
+
+<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/formula.png"  />
+
+where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
+
 ### Input files
 
 #### ioi file
@@ -402,12 +408,6 @@ ENSG00000033178	ENST00000322244,ENST00000429659	ENST00000322244,ENST00000429659	
 ENSG00000145414	ENST00000274054	ENST00000274054	0	ENST00000274054	0	0
 ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	0	ENST00000504804	1	1
 ```
-
-To quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
-
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/formula.png"  />
-
-where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
 
 ----------------------------
 ## GOenrich
