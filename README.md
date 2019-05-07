@@ -134,7 +134,7 @@ statistics the distance of transcript start site to the closest histone or fanto
 python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 ```
 
-- **-g**  | **--gtf**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
+- **-g**  | **--gtf**: gtf file
 
 - **-p**  | **--path**: directory which contain histone files or fatom5 files
 
