@@ -301,7 +301,7 @@ python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tss>] -r <reference> -
 
 ### Example
 ```
-python3 TGStools.py tiss_specific -f sample.gtf[,control.gtf] -t breast -o out.gtf
+python3 TGStools.py tiss_specific -i sample.gtf[,control.gtf] -t breast -r hg38 -o out.gtf
 ```
 
 ### Output files
