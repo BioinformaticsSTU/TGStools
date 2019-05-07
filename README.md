@@ -380,7 +380,7 @@ ioi file contains the transcript "events" of gene. produced by staAS, cantained 
 
 ### Usage
 ```
-python3 TGStools.py calScoreD -c <control> -t <treated>
+python3 TGStools.py calScoreD -c <control> -t <treated> -p <prefix>
 ```
 List of options available:
 
