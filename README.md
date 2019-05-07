@@ -199,11 +199,11 @@ python3 TGStools.py INCP -i <file> -p <parallel>
 
 - **-g**  | **--gtf**: if your input file is gtf format please use this parameter
 
-- **-r**  | **--reference**: if you use the -g this parameter must be assigned, within this parameter please assign the path of your reference genome. Some reference files which has been prepared could be download at [hg38](hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit), [hg19](hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit).
+- **-r**  | **--reference**: if you use the -g this parameter must be assigned, within this parameter please assign the path of your reference genome. Some reference files which has been prepared could be download at [hg38](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit), [hg19](http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit).
 
 ### Example
 ```
-python3 TGStools.py INCP -i candidate.gtf -p 6 -g -d hg38.2bit
+python3 TGStools.py INCP -i candidate.gtf -p 6 -g -r hg38.2bit
 or 
 python3 TGStools.py INCP -i candidate.fasta -p 6
 ```
