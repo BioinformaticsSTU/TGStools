@@ -119,7 +119,7 @@ python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_qua
 
 
 #### display of transcripts expression
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/ENSG00000035141.png" width = "550" height = "400"  />
 ENSG00000035141.pdf
 
 
