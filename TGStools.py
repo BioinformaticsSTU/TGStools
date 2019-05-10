@@ -47,7 +47,7 @@ def create_parser(subparsers, fun):
 		group_input = parser_INCP.add_argument_group("Input files arguments");
 		group_input.add_argument('-i','--input', required=True, help="transcript file(sequence or gtf format)");
 		group_input.add_argument('-p','--parallel', required=True, help="specified speed ratio");
-		group_input.add_argument('-g','--gtf', required=False, help="please enter your gtf files");
+		group_input.add_argument('-g','--gtf', required=False, dest='gtf',action='store_true', help="please enter your gtf files");
 		group_input.add_argument('-r','--reference', required=False, help="if your input file is gtf format please enter RefGenome directory");
 		return(parser_INCP);
 	if(fun=="extract_lncRNA_gtf"):
