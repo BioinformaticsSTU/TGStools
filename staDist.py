@@ -8,7 +8,7 @@ path="histone";
 gtf="../TEST/K140.gtf";
 """
 # flag is useless? fantom5 and histone file are all bed format
-def staDist(gtf, path, flag):
+def staDist(gtf, path, flag, prefix):
 	def paintTSS(pdf_path,file_path):                                
 		name_list = ['<50', '<100', '<500', '<1000', '>1000']
 		with open(file_path, 'r') as f1:
@@ -110,7 +110,7 @@ def staDist(gtf, path, flag):
 	#################
 	# sta
 	RESULT=[0, 0, 0, 0, 0];
-	fp=open("DIST.txt", "w");
+	fp=open(prefix+"_DIST.txt", "w");
 	fp.write('<=50'+'\t<=100'+'\t<=500'+'\t<=1000'+'\t>1000\n');
 	for id in trans_id:
 		trans=TSS[id];
@@ -145,4 +145,4 @@ def staDist(gtf, path, flag):
 		STRING+="\t"+str(i);
 	fp.write(STRING+"\n");
 	fp.close()
-	paintTSS("DIST.pdf", "DIST.txt")
+	paintTSS(prefix+"_DIST.pdf", prefix+"_DIST.txt")
