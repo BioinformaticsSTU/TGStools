@@ -18,6 +18,7 @@ def create_parser(subparsers, fun):
 		group_input.add_argument('-g','--gtf', required=True, help="gtf file");
 		group_input.add_argument('-f','--flag', required=True, choices=['histone', 'fantom5'], help="flag that tells programme the type of files in path");
 		group_input.add_argument('-p','--path', required=True, help="directory which contain histone files or fatom5 files");
+		group_input.add_argument('-r','--prefix', required=True, help="prefix of output files");
 		return(parser_staDist);
 	if(fun=="staAS"):
 		parser_staAS = subparsers.add_parser('staAS', help='calculate the proportion of each alternative splicing event in different samples and create graphs');
@@ -99,7 +100,7 @@ def main():
 
 	if subcommand == "staDist":
 		from staDist import staDist
-		staDist(args.gtf, args.path, args.flag);
+		staDist(args.gtf, args.path, args.flag, args.prefix);
 
 	if subcommand == "staAS":
 		from staAS import staAS
