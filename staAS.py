@@ -45,7 +45,7 @@ class get_AS(object):
 		df.plot(kind='bar', figsize=(2*n_col, 2*n_row+5), color=["#E377C2", "#ECE812", "#9467BD", "#D62728", "#2CA02C", "#FF7F0E", "#1F77B4"], alpha=0.5);
 		#df.plot(kind='bar', figsize=(2*n_col, 2*n_row+5), color=["#A6A8AA", "#EA8C8C", "#6EBDE4", "#8FD6A5", "#C6A7CF", "#FBC17A", "#FFF994"]);# 横柱形图 kind=barh
 		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
-		plt.xticks(fontsize=25);
+		plt.xticks(fontsize=25, rotation=30);
 		plt.yticks(fontsize=25);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
@@ -70,7 +70,7 @@ class get_AS(object):
 		mat_proportion.plot(kind='bar', stacked=True, figsize=(1.2*n_col, 1*n_row+5), color=["#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#ECE812", "#E377C2"], alpha=0.5);
 		#mat_proportion.plot(kind='bar', stacked=True, figsize=(1.2*n_col, 1*n_row+5), color=["#A6A8AA", "#EA8C8C", "#6EBDE4", "#8FD6A5", "#C6A7CF", "#FBC17A", "#FFF994"]);
 		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
-		plt.xticks(fontsize=25);
+		plt.xticks(fontsize=25, rotation=30);
 		plt.yticks(fontsize=25);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
