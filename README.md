@@ -156,7 +156,7 @@ python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
 
 ### Output files
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/staDist.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/staDist.png" width = "550" height = "400"  />
 staDist.pdf
 
 ----------------------------
@@ -233,7 +233,7 @@ output of intersect of the software CNCI and PLEK, in which the first column is 
 #### venny_plek_cnci.pdf 
 the summary of the venny between the output of the CNCI and PLEK
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/venn.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/venn.png" width = "550" height = "400"  />
 
 venny image
 
@@ -360,11 +360,11 @@ TE5	1922    1870    4182    611     328     2553    4288
 ```
 
 #### bar image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_bar.1.png" width = "500" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_bar.1.png" width = "500" height = "400"  />
 TEST_bar.png
 
 #### barh_align image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_barh_align.1.png" width = "400" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_barh_align.1.png" width = "400" height = "400"  />
 TEST_barh_align.png
 
 ----------------------------
@@ -375,7 +375,7 @@ calculate score_D of each gene
 
 To quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
 
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/formula.png"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
 
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
 
@@ -458,11 +458,11 @@ GO_Biological_Process_2018	double-strand break repair (GO:0006302)	11/142	0.0002
 ```
 
 #### barh image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_barh.png"  width="600" height="450" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_GO_barh.png"  width="600" height="450" />
 TEST_GO_enrichment_barh.png
 
 #### scatter image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_scatter.png" width="600" height="400" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_GO_scatter.png" width="600" height="400" />
 TEST_GO_enrichment_scatter.png
 
 
