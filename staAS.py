@@ -100,7 +100,11 @@ class get_AS(object):
 			data_DF.append(fracs);
 		self.mat=pd.DataFrame(data=data_DF, index=self.SAMPLES, columns=ASs);
 		kf = chi2_contingency(self.mat)
-		print('chisq-statistic=%.4f, p-value=%.4f, df=%i expected_frep=%s'%kf)
+		print('chisq-statistic=%.4f, p-value=%.4f, df=%i expected_frep=%s'%kf);
+		if(kf[1]<0.05):
+			print('Proportion of alternative splicing in each sample has not difference.');
+		else:
+			print('Proportion of alternative splicing in each sample has difference.');
 		self.mat.to_csv(self.prefix+"_sta.txt", sep="\t");
 		self.plot_bar(self.mat, self.prefix);
 		self.plot_barh_align(self.mat, self.prefix);
