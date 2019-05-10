@@ -146,12 +146,13 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 - **-f**  | **--flag**: flag that tells programme the type of files in path
 
+- **-r**  | **--prefix**: prefix of output files
 
 ### Example
 ```
-python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone
+python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone -r TEST
 or
-python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
+python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5 -r TEST
 ```
 
 ### Output files
