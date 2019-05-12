@@ -46,6 +46,10 @@ After conda environment has been activated, TGStools can be install through comm
 ```
 source setup.sh
 ```
+Because github has data upload limit, we have upload supplement data in onedrive and you can download supplement data 
+[here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
+) and the put this file in source directory.
+
 ----------------------------
 # Command and subcommand structure
 ----------------------------
