@@ -322,7 +322,7 @@ GTF file which extract lncRNA-specific information
 ----------------------------
 ## staAS
 ----------------------------
-calculate the proportion of each alternative splicing event in different samples and create graphs.
+calculate the proportion of each alternative splicing event in different samples and produce graphs.
 ### Input files
 
 #### gtf file
@@ -377,18 +377,15 @@ TEST_barh_align.png
 ## calScoreD
 ----------------------------
 
-calculate score_D of each gene
-
-To quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
-
+calculate score_D of each gene.  
+In order to quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
-
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
 
 ### Input files
 
 #### ioi file
-ioi file contains the transcript "events" of gene. produced by staAS, cantained in *_Event dietctory.
+ioi file which contains transcript "events" of each gene in *_Event dietctory and produced at last step staAS.
 
 ### Usage
 ```
@@ -425,7 +422,7 @@ ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	
 ## GOenrich
 ----------------------------
 
-select top genes and make GO enrichment analysis
+select top genes from score_D resullt and have GO enrichment analysis
 
 ### Input files
 
