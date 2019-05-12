@@ -40,14 +40,15 @@ Conda should be installed and activate.
 conda create -n python3 python=3.5
 source activate python3
 ```
+Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in one drive and you can download supplement data 
+[here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
+) and then put this file in ***source*** directory.
 After conda environment has been activated, TGStools can be install through command below.
 By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
 ```
 source setup.sh
 ```
-Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in one drive and you can download supplement data 
-[here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
-) and then put this file in ***source*** directory.
+
 
 ----------------------------
 # Command and subcommand structure
