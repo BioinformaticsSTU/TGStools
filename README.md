@@ -131,7 +131,8 @@ ENSG00000035141.pdf
 ## staDist
 ----------------------------
 
-statistics the distance of transcript start site to the closest histone or fantom5
+statistics the distance of transcript start site to the closest histone or fantom5. 
+**This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
@@ -286,7 +287,7 @@ output file extract lncRNA information of GTF format
 ----------------------------
 
 extract cancer-specific lncRNA information of GTF format
-
+**This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 **If you want to run this step faster, skip the parameter -t.**
 
 ### Input files
