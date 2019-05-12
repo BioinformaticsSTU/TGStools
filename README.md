@@ -27,28 +27,27 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
-Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
+Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as display transcripts of gene, characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
 
 
 ----------------------------
 # Installation
 ----------------------------
 
-TGStools has been developed under linux and Python 3.5. In order to install TGStools successfully, it should be installed in conda environment and dependencies of TGStools are also designed to be installed through conda command.
-It's quite simple to install TGStools. By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
-
+TGStools can only run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in **conda** environment and dependencies of TGStools are also designed to be installed through **conda command**.
 Conda should be installed and activate.
 ```
 conda create -n python3 python=3.5
 source activate python3
 ```
 After conda environment has been activated, TGStools can be install through command below.
+By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
 ```
 source setup.sh
 ```
-Because github has data upload limit, we have upload supplement data in onedrive and you can download supplement data 
+Because github has data upload limit, we have upload **supplement data(gtfAnnotation.gtf)** in one drive and you can download supplement data 
 [here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
-) and the put this file in source directory.
+) and then put this file in **source** directory.
 
 ----------------------------
 # Command and subcommand structure
