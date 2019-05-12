@@ -34,7 +34,7 @@ Third generation sequencing can de novo detect long reads of several thousand ba
 # Installation
 ----------------------------
 
-TGStools can only run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in **conda** environment and dependencies of TGStools are also designed to be installed through **conda command**.
+TGStools can only run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in ***conda*** environment and dependencies of TGStools are also designed to be installed through ***conda command***.
 Conda should be installed and activate.
 ```
 conda create -n python3 python=3.5
@@ -45,9 +45,9 @@ By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, ma
 ```
 source setup.sh
 ```
-Because github has data upload limit, we have upload **supplement data(gtfAnnotation.gtf)** in one drive and you can download supplement data 
+Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in one drive and you can download supplement data ***
 [here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
-) and then put this file in **source** directory.
+)*** and then put this file in ***source*** directory.
 
 ----------------------------
 # Command and subcommand structure
