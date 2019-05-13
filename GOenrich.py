@@ -134,7 +134,7 @@ def GOenrich(input, threshold, number, type, prefix):
 		plt.barh(range(len(GO_value)), GO_value, height=0.7, color='lightskyblue', alpha=0.8);
 		plt.yticks(range(len(GO_value)), TERMS);
 		plt.xlim(0, 10);
-		plt.xlabel("-log10(P)");
+		plt.xlabel("-lg(P)");
 		plt.title("GO enrichment");
 		"""
 		for x, y in enumerate(GO_value):
@@ -158,7 +158,7 @@ def GOenrich(input, threshold, number, type, prefix):
 			NUM.append(100*num);
 		sc = plt.scatter(GO_value, TERMS, c=GO_value, vmin=0, s=NUM, cmap=cm);
 		plt.colorbar(sc);
-		plt.xlabel("-log10(P)");
+		plt.xlabel("-lg(P)");
 		plt.title("GO enrichment");
 		plt.show()
 		fig.savefig(prefix+"_GO_scatter.png");
