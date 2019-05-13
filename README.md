@@ -295,19 +295,16 @@ extract cancer-specific lncRNA information of GTF format.
 #### FILE 
 files of the candidate lncRNA gtf format.
 
-#### TISSUE FILE
-
-
 ### Usage
 ```
 python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
-- **-i**  | **--input**: input files of the candidate lncRNA gtf format, if the input files have two splited by ',', the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
+- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. If there is only one input file, background control tissue is optional. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
 
-- **-t**  | **--tissue**: set tissue name if input files have the only one. If there are two input files, this parameter can be ignored.The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
+- **-t**  | **--tissue**: set tissue name if there is only one input file. If there are two input files, this parameter should be ignored. The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
 
-- **-r**  | **--reference**: set refgene name,'hg38' and 'hg19' can be chosen.
+- **-r**  | **--reference**: refgene name, 'hg38' and 'hg19' can be chosen.
 
 - **-o**  | **--out**: output name extracted lncRNA-specific information of GTF format
 
