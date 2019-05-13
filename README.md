@@ -300,7 +300,7 @@ files of the candidate lncRNA gtf format.
 
 ### Usage
 ```
-python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tss>] -r <reference> -o <out>
+python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
 - **-i**  | **--input**: input files of the candidate lncRNA gtf format, if the input files have two splited by ',', the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
