@@ -47,6 +47,7 @@ class get_AS(object):
 		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
 		plt.xticks(fontsize=25, rotation=30);
 		plt.yticks(fontsize=25);
+		plt.ylabel("count", fontsize=30);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
 		#delete ax2 from the figure
@@ -72,6 +73,7 @@ class get_AS(object):
 		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
 		plt.xticks(fontsize=25, rotation=30);
 		plt.yticks(fontsize=25);
+		plt.ylabel("percentage", fontsize=30);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
 		#delete ax2 from the figure
