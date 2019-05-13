@@ -169,7 +169,7 @@ staDist.pdf
 ## INCP
 ----------------------------
 
-an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).  
+INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
@@ -288,7 +288,7 @@ output file extract lncRNA information of GTF format
 
 extract cancer-specific lncRNA information of GTF format.  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**  
-**If you want to run this step faster, skip the parameter -t.**
+**If you want to run this step faster, input control and cancer sample and skip the parameter -t.**
 
 ### Input files
 
@@ -300,7 +300,7 @@ files of the candidate lncRNA gtf format.
 python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
-- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. If there is only one input file, background control tissue is optional. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
+- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. This step get cancer-specific transctipts from these file. If there is only one input file, background control tissue must be added. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
 
 - **-t**  | **--tissue**: set tissue name if there is only one input file. If there are two input files, this parameter should be ignored. The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
 
