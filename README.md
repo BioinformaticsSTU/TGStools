@@ -34,13 +34,13 @@ Third generation sequencing can de novo detect long reads of several thousand ba
 # Installation
 ----------------------------
 
-TGStools can only run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in ***conda*** environment and dependencies of TGStools are also designed to be installed through ***conda command***.
+TGStools can run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in ***conda*** environment and dependencies of TGStools are also designed to be installed through ***conda command***.
 Conda should be installed and activate.
 ```
 conda create -n python3 python=3.5
 source activate python3
 ```
-Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in one drive and you can download supplement data 
+Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in OneDrive and you can download supplement data 
 [here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
 ) and then put this file in ***source*** directory.
 After conda environment has been activated, TGStools can be install through command below.
@@ -63,7 +63,7 @@ python3 TGStools.py subcommand options
 where the subcommand can be one of these:
 
 - **geneDisplay**    : create a macroscopic image showing transcripts of queried gene
-- **staDist**    : statistics the distance of transcript-start-site to the closest histone or fantom5
+- **staDist**    : Distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags
 - **INCP**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
@@ -76,7 +76,7 @@ where the subcommand can be one of these:
 ## geneDisplay
 ----------------------------
 
-By providing GTF files, gene id and trans_quant files(quantity of transcripts) to get the macroscopic image which display the transcripts expression of queried gene. Similar to UCSC's gene query, users could provide multiple epigenetic data in the same folder, and transcripts and epigenetic data will be drawn under the gene.
+By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get the macroscopic image which display the isoforms of queried gene. Users could provide multiple annotation data such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
 
 ### Input files
 
@@ -112,7 +112,7 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 - **-q**  | **--quant**: quantity of transcript
 
-- **-p**  | **--path**: directory which contain histone files or fatom5 files
+- **-p**  | **--path**: path of auxiliary annotations.
 
 ### Example
 ```
@@ -169,7 +169,7 @@ staDist.pdf
 ## INCP
 ----------------------------
 
-INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).  
+INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
@@ -419,7 +419,7 @@ ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	
 ## GOenrich
 ----------------------------
 
-select top genes from score_D resullt and have GO enrichment analysis
+select top ranked genes from score_D resullt and have GO enrichment analysis
 
 ### Input files
 
