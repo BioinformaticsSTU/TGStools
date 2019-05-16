@@ -117,6 +117,8 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 ### Example
 ```
 python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
+or
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -p histone
 ```
 
 ### Output files
