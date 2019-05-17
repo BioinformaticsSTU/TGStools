@@ -209,7 +209,7 @@ python3 TGStools.py INCP -i <file> -p <parallel>
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
-- **-p**  | **--parallel**: assign the running CUP numbers
+- **-p**  | **--parallel**: assign the running CPU numbers which should not larger the CPU number your computer has
 
 - **-g**  | **--gtf**: if your input file is gtf format please use this parameter
 
@@ -288,7 +288,7 @@ output file extract lncRNA information of GTF format
 ## tiss_specific
 ----------------------------
 
-extract cancer-specific lncRNA information of GTF format.  
+extract tissue-specific lncRNA information of GTF format.  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**  
 **If you want to run this step faster, input control and cancer sample and skip the parameter -t.**
 
@@ -321,7 +321,7 @@ GTF file which extract lncRNA-specific information
 ----------------------------
 ## staAS
 ----------------------------
-calculate the proportion of each alternative splicing event in different samples and produce graphs.
+analyze alternative events by SUPPA and calculate the proportion of each alternative splicing event in different samples and produce graphs.
 ### Input files
 
 #### gtf file
@@ -380,6 +380,7 @@ calculate score_D of each gene.
 In order to quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
+Genes with a higher D value are more diversely spliced.
 
 ### Input files
 
@@ -421,7 +422,7 @@ ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	
 ## GOenrich
 ----------------------------
 
-select top ranked genes from score_D resullt and have GO enrichment analysis
+select top ranked genes from score_D result and conduct GO enrichment analysis
 
 ### Input files
 
@@ -435,9 +436,9 @@ List of options available:
 
 - **-i**  | **--input**: score D result
 
-- **-t**  | **--threshold**: threshold for adjusted p-value
+- **-t**  | **--threshold**: threshold for adjusted p-value of GO enrichment analysis result
 
-- **-n**  | **--number**: number of top genes for analysis
+- **-n**  | **--number**: number of score_D top ranked genes 
 
 - **-f**  | **--type**: type of image, 'bar' and 'scatter' can be chosen
 
