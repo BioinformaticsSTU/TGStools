@@ -62,23 +62,23 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **geneDisplay**    : create a macroscopic image showing transcripts of queried gene
-- **staDist**    : Distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags
-- **INCP**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
-- **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
-- **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
+- **geneDisplay**    : create a macroscopic image showing transcripts of queried gene.
+- **staDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+- **INCP**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
+- **extract_lncRNA_gtf**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
+- **tiss_specific**       : extract tissue-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
 - **calScoreD**     : calculate score_D(its formula can be seen below) of each gene.
-- **GOenrich**     : select top genes and do GO enrichment analysis.
+- **GOenrich**     : select top ranked genes and conduct GO enrichment analysis.
 
 
 ----------------------------
 ## geneDisplay
 ----------------------------
 
-By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get the macroscopic image which display the isoforms of queried gene. Users could provide multiple annotation data such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
+By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get the macroscopic image which display the isoforms of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
 
-We have upload histone bed files in OneDrive. Uploaded data contains 3 types of histone form 15 tissues. You can download data from [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU)
+For your convenience, we have upload epigenetic marks data in OneDrive. Uploaded data contains 3 types of histone marks from 15 tissues. You can download data [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU).
 
 ### Input files
 
@@ -135,7 +135,7 @@ ENSG00000035141.pdf
 ## staDist
 ----------------------------
 
-distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+Distances distribution of transcript-start-site(TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
 
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
@@ -174,13 +174,13 @@ staDist.pdf
 ## INCP
 ----------------------------
 
-INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).  
+INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
 #### hg19.2bit and hg38.2bit
-hg19.2bit and hg38.2bit are 2bit format of human genomes which can be downloaded on UCSC.
+[hg19.2bit](http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit) and [hg38.2bit](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit) are 2bit format of human genomes which can be downloaded on UCSC.
 
 #### gtf file
 An annotation file in GTF format is like:
@@ -212,7 +212,7 @@ python3 TGStools.py INCP -i <file> -p <parallel>
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
-- **-p**  | **--parallel**: assign the running CPU numbers which should not larger the CPU number your computer has
+- **-p**  | **--parallel**: assign the running CPU numbers which should not larger than the CPU number your computer has
 
 - **-g**  | **--gtf**: if your input file is gtf format please use this parameter
 
@@ -252,7 +252,7 @@ venny image
 ## extract_lncRNA_gtf
 ----------------------------
 
-extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
+Extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
 
 ### Input files
 
@@ -324,7 +324,7 @@ GTF file which extract lncRNA-specific information
 ----------------------------
 ## staAS
 ----------------------------
-analyze alternative events by SUPPA and calculate the proportion of each alternative splicing event in different samples and produce graphs.
+Analyzing alternative events by SUPPA and calculate the proportion of each alternative splicing event in different samples and produce graphs.
 ### Input files
 
 #### gtf file
@@ -347,7 +347,6 @@ List of options available:
 
 - **-p**  | **--prefix**: prefix of output files
 
-The command line to generate local AS events will be of the form:
 
 ### Example
 ```
@@ -488,9 +487,6 @@ TEST_GO_enrichment_barh.png
 #### scatter image
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_GO_scatter.png" width="600" height="400" />
 TEST_GO_enrichment_scatter.png
-
-
-
 
 
 ----------------------------
