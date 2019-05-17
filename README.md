@@ -124,7 +124,7 @@ python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -p histone
 ### Output files
 
 
-#### display of transcripts expression
+#### isoforms comparison
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/ENSG00000035141.png" width = "550" height = "400"  />
 ENSG00000035141.pdf
 
@@ -133,14 +133,15 @@ ENSG00000035141.pdf
 ## staDist
 ----------------------------
 
-statistics the distance between transcript start site and its closest histone or fantom5.  
+distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
 #### gtf file
 
-#### directory which contain histone files or fatom5 files
+#### directory which contains auxiliary annotations files
 
 ### Usage
 ```
@@ -149,7 +150,7 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 - **-g**  | **--gtf**: gtf file
 
-- **-p**  | **--path**: directory which contain histone files or fatom5 files
+- **-p**  | **--path**: directory which contains auxiliary annotations files
 
 - **-f**  | **--flag**: flag that tells programme the type of files in path
 
