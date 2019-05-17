@@ -43,7 +43,7 @@ source activate python3
 Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in OneDrive and you can download supplement data 
 [here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
 ) and then put this file in ***source*** directory.
-After conda environment has been activated, TGStools can be install through command below.
+After conda environment has been activated, TGStools can be installed through command below.
 By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
 ```
 source setup.sh
@@ -78,6 +78,8 @@ where the subcommand can be one of these:
 
 By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get the macroscopic image which display the isoforms of queried gene. Users could provide multiple annotation data such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
 
+We have upload histone bed files in OneDrive. Uploaded data contains 3 types of histone form 15 tissues. You can download data from [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU)
+
 ### Input files
 
 #### gtf file
@@ -90,7 +92,7 @@ chr14 Ensembl exon  73750789  73751082  0.0 - . gene_id "ENSG00000000001"; trans
 chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
 ```
 
-#### path of histone files or fatom5 files
+#### path of auxiliary annotations files
 
 #### trans_quant
 ```
