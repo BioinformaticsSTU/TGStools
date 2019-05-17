@@ -305,7 +305,7 @@ files of the candidate lncRNA gtf format.
 python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
-- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. This step get cancer-specific transctipts from these file. If there is only one input file, background control tissue must be added. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
+- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. This step get cancer-specific transctipts from these file. If there is only one input file, background control tissue must be added. Refer to for more information https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
 
 - **-t**  | **--tissue**: set tissue name if there is only one input file. If there are two input files, this parameter should be ignored. The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
 
