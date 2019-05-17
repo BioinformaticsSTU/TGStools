@@ -364,7 +364,7 @@ SHEE	2849	2666	6876	954	389	3851	4870
 TE5	1922    1870    4182    611     328     2553    4288
 ```
 
-#### Chi-square test result of samples
+#### Chi-square test result of samples in pair
 TEST_chi2_result.txt
 ```
 chi-square test result of K510 and K140:
@@ -372,14 +372,14 @@ chisq-statistic=14.5507, p-value=0.0241, df=6 expected_frep=[[ 2583.5706325   26
     429.06016795  3132.35592306  5420.13507614]
  [ 2185.4293675   2273.41478134  4771.37567089  1017.33134742
     362.93983205  2649.64407694  4584.86492386]].
-Proportion of alternative splicing in samples has no difference.
+Proportion of alternative splicing in samples has difference.
 
 chi-square test result of K510 and SHEEC:
 chisq-statistic=127.8865, p-value=0.0000, df=6 expected_frep=[[ 2734.06990745  2758.08069009  5353.77266601  1011.61218438
     456.83673286  3307.1693773   5474.45844191]
  [ 1592.93009255  1606.91930991  3119.22733399   589.38781562
     266.16326714  1926.8306227   3189.54155809]].
-Proportion of alternative splicing in samples has no difference.
+Proportion of alternative splicing in samples has difference.
 ```
 
 #### bar image
