@@ -62,7 +62,7 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **geneDisplay**    : create a macroscopic image showing transcripts of queried gene.
+- **geneDisplay**    :  isoforms comparison of queried gene with auxiliary annotation.
 - **staDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
 - **INCP**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
 - **extract_lncRNA_gtf**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
@@ -76,7 +76,7 @@ where the subcommand can be one of these:
 ## geneDisplay
 ----------------------------
 
-By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get the macroscopic image which display the isoforms of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
+By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get isoforms comparison of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
 
 For your convenience, we have upload epigenetic marks data in OneDrive. Uploaded data contains 3 types of histone marks from 15 tissues. You can download data [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU).
 
