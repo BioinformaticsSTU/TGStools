@@ -68,7 +68,7 @@ where the subcommand can be one of these:
 - **extract_lncRNA_gtf**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **tiss_specific**       : extract tissue-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
-- **calScoreD**     : calculate score_D(its formula can be seen below) of each gene.
+- **calScoreD**     : select the most spliced genes based on a score_D(its formula can be seen below) of each gene.
 - **GOenrich**     : select top ranked genes and conduct GO enrichment analysis.
 
 
@@ -396,7 +396,7 @@ TEST_barh_align.png
 ## calScoreD
 ----------------------------
 
-calculate score_D of each gene.  
+select the most spliced genes based on a score_D of each gene.
 In order to quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
