@@ -10,7 +10,7 @@ gtf="../TEST/K140.gtf";
 # flag is useless? fantom5 and histone file are all bed format
 def staDist(gtf, path, flag, prefix):
 	def paintTSS(pdf_path,file_path):                                
-		name_list = ['<50', '<100', '<500', '<1000', '>1000']
+		name_list = ['<50bp', '<100bp', '<500bp', '<1000bp', '>1000bp']
 		with open(file_path, 'r') as f1:
 			next(f1)
 			list1 = f1.readlines()
@@ -24,6 +24,7 @@ def staDist(gtf, path, flag, prefix):
 		num_list = [less50 / num, less100 / num, less500 / num, less1000 / num, more1000 / num]
 		fig1 = plt.figure(1)
 		plt.bar(range(len(num_list)), num_list, color=["#D62728", "#ECE812", "#9467BD", "#E377C2", "#2CA02C"], alpha=0.5, tick_label=name_list)
+		plt.ylabel("Percentage", fontsize=12);
 		fig1.savefig(pdf_path, dpi=150)
 		plt.close()
 	#######
@@ -36,7 +37,16 @@ def staDist(gtf, path, flag, prefix):
 	};
 	chromosome=["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY", "chrM"];
 	INDEX={"-":chromosome1, "+":chromosome2};
+	if(not os.path.exists(path)):
+		print("Error: there is no directory "+path);
+		return();
 	FILES=os.listdir(path);
+	if(len(FILES)==0):
+		print("Error: there is no file in "+path);
+		return();
+	if(not os.path.exists(gtf)):
+		print("Error: "+gtf+" doesn't exist!");
+		return();
 	###########
 	if(flag=='histone'):
 		for FILE in FILES:

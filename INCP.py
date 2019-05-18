@@ -94,9 +94,9 @@ def INCP(file, parallel, gtf, reference):
 	outPutFileName=os.path.splitext(inPutFileName)[0]
 	try:
 		if not os.path.exists(inPutFileName):
-			print("inPut doesn't exist!")
+			print("Error: "+inPutFileName+" doesn't exist!")
 	except:
-		print("inPut doesn't exist!")
+		print("Error: "+inPutFileName+" doesn't exist!")
 
 	#CNCI and PLEK code
 	if FileType:

@@ -8,7 +8,7 @@ def create_parser(subparsers, fun):
 		parser_geneDisplay = subparsers.add_parser('geneDisplay', help='create a macroscopic image showing transcripts of queried gene');
 		group_input = parser_geneDisplay.add_argument_group("Input files arguments");
 		group_input.add_argument('-g','--gtf', required=True, help="gtf file");
-		group_input.add_argument('-q','--quant', required=True, help="quantity of transcript");
+		group_input.add_argument('-q','--quant', required=False, help="quantity of transcript");
 		group_input.add_argument('-i','--id', required=True, help="gene id that you want to query");
 		group_input.add_argument('-p','--path', required=True, help="directory which contain histone files or fatom5 files");
 		return(parser_geneDisplay);
@@ -96,7 +96,10 @@ def main():
 	############
 	if subcommand == "geneDisplay":
 		from geneDisplay import geneDisplay
-		geneDisplay(args.gtf, args.id, args.quant, args.path);
+		if(args.quant):
+			geneDisplay(args.gtf, args.id, args.quant, args.path);
+		else:
+			geneDisplay(args.gtf, args.id, "", args.path);
 
 	if subcommand == "staDist":
 		from staDist import staDist

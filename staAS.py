@@ -45,9 +45,9 @@ class get_AS(object):
 		df.plot(kind='bar', figsize=(2*n_col, 2*n_row+5), color=["#E377C2", "#ECE812", "#9467BD", "#D62728", "#2CA02C", "#FF7F0E", "#1F77B4"], alpha=0.5);
 		#df.plot(kind='bar', figsize=(2*n_col, 2*n_row+5), color=["#A6A8AA", "#EA8C8C", "#6EBDE4", "#8FD6A5", "#C6A7CF", "#FBC17A", "#FFF994"]);# 横柱形图 kind=barh
 		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
-		plt.xticks(fontsize=25, rotation=30);
-		plt.yticks(fontsize=25);
-		plt.ylabel("count", fontsize=30);
+		plt.xticks(fontsize=20, rotation=30);
+		plt.yticks(fontsize=15);
+		plt.ylabel("Counts\n", fontsize=30);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
 		#delete ax2 from the figure
@@ -68,12 +68,12 @@ class get_AS(object):
 				mat_proportion.iloc[i, j]=mat_proportion.iloc[i, j]/sum_mat[i];
 		fig=plt.figure('barh_align'); 
 		ax1=fig.add_subplot(1, 2, 1); 
-		mat_proportion.plot(kind='bar', stacked=True, figsize=(1.2*n_col, 1*n_row+5), color=["#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#ECE812", "#E377C2"], alpha=0.5);
+		mat_proportion.plot(kind='bar', stacked=True, figsize=(1.5*n_col, 1*n_row+5), color=["#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#ECE812", "#E377C2"], alpha=0.5);
 		#mat_proportion.plot(kind='bar', stacked=True, figsize=(1.2*n_col, 1*n_row+5), color=["#A6A8AA", "#EA8C8C", "#6EBDE4", "#8FD6A5", "#C6A7CF", "#FBC17A", "#FFF994"]);
-		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=20);
-		plt.xticks(fontsize=25, rotation=30);
-		plt.yticks(fontsize=25);
-		plt.ylabel("percentage", fontsize=30);
+		plt.legend(bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0., markerscale=10, fontsize=15);
+		plt.xticks(fontsize=20, rotation=15);
+		plt.yticks(fontsize=15);
+		plt.ylabel("Percentage\n", fontsize=25);
 		# add a subplot with no frame
 		ax2=fig.add_subplot(122, frameon=False);
 		#delete ax2 from the figure
@@ -103,10 +103,22 @@ class get_AS(object):
 		self.mat=pd.DataFrame(data=data_DF, index=self.SAMPLES, columns=ASs);
 		kf = chi2_contingency(self.mat)
 		print('chisq-statistic=%.4f, p-value=%.4f, df=%i expected_frep=%s'%kf);
-		if(kf[1]<0.05):
-			print('Proportion of alternative splicing in each sample has not difference.');
-		else:
-			print('Proportion of alternative splicing in each sample has difference.');
+		fp_chi=open(self.prefix+"_chi2_result.txt", "w");
+		List=self.mat.index;
+		len_List=len(List);
+		for i in range(0, len_List-1):
+			for j in range(i+1, len_List):
+				A=List[i];
+				B=List[j];
+				mat_p=self.mat.loc[[A, B],:];
+				fp_chi.write("chi-square test result of "+A+" and "+B+": \n");
+				kf_p = chi2_contingency(mat_p);
+				fp_chi.write('chisq-statistic=%.4f, p-value=%.4f, df=%i expected_frep=%s.\n'%kf_p);
+				if(kf_p[1]<0.05):
+					fp_chi.write('Proportion of alternative splicing in samples has difference.\n\n');
+				else:
+					fp_chi.write('Proportion of alternative splicing in samples has no difference.\n\n');
+		fp_chi.close();
 		self.mat.to_csv(self.prefix+"_sta.txt", sep="\t");
 		self.plot_bar(self.mat, self.prefix);
 		self.plot_barh_align(self.mat, self.prefix);

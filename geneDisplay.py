@@ -18,24 +18,26 @@ parse.add_option('-p','--path',dest='path',action='store',metavar='input histone
 """
 
 class showGene(object):
+
     def __init__(self, gtfText_path, Gene_name, idtext_path,histonePath):
+       	if(not os.path.exists(gtfText_path)):
+            print("Error: "+gtfText_path+" doesn't exist!");
+            return();
+       	if(not os.path.exists(idtext_path)):
+            print("Error: "+idtext_path+" doesn't exist!");
+            return();
         self.genename = ''
         self.gene_gtf = ''
-        self.transcript_num = 0
-		# 某基因下的转录本数目
-        self.ucsctransNum = 0
-		#UCSC 转录本数目
-        self.gene_gtf = gtfText_path
-		#input GTF
+        self.transcript_num = 0                                                  # 某基因下的转录本数目
+        self.ucsctransNum = 0                                                    #UCSC 转录本数目
+        self.gene_gtf = gtfText_path                                             #input GTF
         self.Title = self.transferName(Gene_name.upper())
-        self.histone_path = histonePath
-		#输入的histone文件夹的名称
+        self.histone_path = histonePath                                        #输入的histone文件夹的名称
         self.tsssource_path = os.path.split(os.path.realpath(__file__))[0]+'/'+'source/hg38.cage_peak_phase1and2combined_fair_ann.txt.gz.extract.tsv'
         try:
-            self.genename = self.Title[2]
-			#user input Gene_name
+            self.genename = self.Title[2]                                           #user input Gene_name
         except:
-            print("genename no exist,please check and retry")
+            print("Error: gene name doesn't exist,please check and retry")
             self.genename = ''
         self.show(idtext_path)
 
@@ -59,62 +61,83 @@ class showGene(object):
         fp.close()
         return transcript_list
 
-    def show(self, idtext_path):
+    # ready for date
+    def show(self, idtext_path):                                              #is Gene exist?
         global genetxt_path,ucsc_path
+
         if self.gene_gtf == '' or self.genename == '':
             return
-        result_path = self.genename         #genenameTXTfile include pdf and gene file
-        if not os.path.exists(result_path):
-		#if don't have result path ,create file
+        result_path =self.genename         #genenameTXTfile include pdf and gene file
+        if not os.path.exists(result_path):                                #if don't have result path ,create file
             os.makedirs(result_path)
-        genetxt_path = result_path + '/' + self.genename + '.txt';#gene file path
+        genetxt_path = result_path + '/' + self.genename + '.txt'         #gene file path
         ucsc_path = result_path + '/UCSC' + self.genename + '.txt'
-        ucsc_filepath = os.path.split(os.path.realpath(__file__))[0]+'/'+'source/' + 'gtfAnnotation.gtf'
-        transcript_list = self.Read_WriteFile(self.gene_gtf,genetxt_path,True);#store this specile gene's transcript_list
+        ucsc_filepath =  os.path.split(os.path.realpath(__file__))[0]+'/'+'source/' + 'gtfAnnotation.gtf'
+        transcript_list = self.Read_WriteFile(self.gene_gtf,genetxt_path,True)                  #store this specile gene's transcript_list
         # print(transcript_list)
-        ucsctranscrpt_list = self.Read_WriteFile(ucsc_filepath,ucsc_path,False);#store ucsc list
+        ucsctranscrpt_list = self.Read_WriteFile(ucsc_filepath,ucsc_path,False)                #store ucsc list
         if transcript_list == []:
             print("genename no exist,please check and retry")
         else:
-            lista = [];#recorde ax1 label
-            for eachLine in ucsctranscrpt_list:
-                lista.append(' ')
+            reLabel = 0
+            ylabelList = []
+            for i in ucsctranscrpt_list:
+                if not i in transcript_list:
+                    ylabelList.append(i)
+                else:
+                    reLabel += 1
+            ylabelList = ylabelList + transcript_list   # recorde ay label
+            ay1LabelList = []                           # recorde ay1 label
+            for i in range(len(ucsctranscrpt_list) - reLabel):
+                ay1LabelList.append(' ')
             for eachnum in transcript_list:
                 if idtext_path != '':
                     trLabel = '(' + str(self.read_transcriptNum(idtext_path, eachnum)) + ')'
                 else:
                     trLabel = ''
-                lista.append(trLabel)
-            self.paint(result_path,transcript_list,ucsctranscrpt_list,lista)
+                ay1LabelList.append(trLabel)
 
-    def paint(self,result_path,transcript_list,ucsctranscrpt_list,lista):
-        line_width = 5;# the line width of picture
+            self.paint(result_path, ylabelList, ay1LabelList, reLabel)
+
+
+    def paint(self,result_path,ylabelList,ay1LabelList,reLabel):
+        line_width = 5  # the line width of picture
         frontsize = 6
         quver_width = 0.003
-        if self.transcript_num >= 21:
-		#if transcript_num>21,line_width = 4
+        if len(ylabelList) >= 21:                     #if transcript_num>21,line_width = 4
             line_width = 4
             frontsize = 4
             quver_width = 0.005
-        elif self.transcript_num + self.ucsctransNum >=40:
+        elif len(ylabelList)>=40:
             line_width = 3
             frontsize = 3
             quver_width = 0.006
         fig = plt.figure(1)
-        num = 0;#所有转录本的数目
-        traNum = -1;#所有转录本start&end的数目
+        num = 0                         #所有转录本的数目
+        traNum = -1                     #所有转录本start&end的数目
         pdf_path = result_path + '/' + self.genename + '.pdf'
-        temporaryFile = result_path + '/temp.txt'; #temparay file to store src & f  used it destory
-        src = open(genetxt_path, "r")
-        f = open(ucsc_path, 'r')
+        temporaryFile = result_path + '/temp.txt'              #temparay file to store src & f  used it destory
         temp = open(temporaryFile, "w")
-        temp.write(f.read())
+        src = open(genetxt_path, "r")
+        for each_num in open(ucsc_path, 'r'):   #遍历UCSC判断是否在基因转录本上有显示
+            flag = False
+            each_num_list = each_num.split('\t')
+            a = re.search('transcript_id "(.*?)";', each_num_list[8]).group(1)
+            if 'ENST' in a:
+                with open(genetxt_path, 'r') as foo:
+                    for line in foo.readlines():
+                        if a.split('.')[0] in line:
+                            flag = True     #如果有重复的转录本就标记一下
+            if flag == False:
+                temp.write(each_num)
+                # print('each_num:',each_num)
+
         temp.write(src.read())
-        f.close()
         src.close()
         temp.close()
+
         trStart = []
-        trEnd = []; #count transcript min start max end
+        trEnd = []                                  #count transcript min start max end
         for eachLine in  open(temporaryFile, 'r'):                  #first : searching the total data of gene transcript for max&min transcript
             eachLine_list = eachLine.split('\t')
             trStart.append(eachLine_list[3])
@@ -136,6 +159,7 @@ class showGene(object):
             else:
                 tName1 = ""
             if eachLine_list[2] == 'exon':
+
                 if eachLine_list[6] == '+':
                     arr = '4'
                 else:
@@ -143,12 +167,14 @@ class showGene(object):
                 #左纵坐标轴ax
                 ax = fig.add_axes([0.2, 0.2, 0.5, 0.6])
                 ax.set_xlim(int(transcript_start) - 10, int(transcript_end) + 10)
-                ax.set_ylim(-0.5, self.transcript_num + self.ucsctransNum +2)
+                ax.set_ylim(-0.5, len(ylabelList) +2)
                 ax.set_xticks(np.linspace(int(transcript_start) - 1000, int(transcript_end) + 1000, 2))
-                ax.set_yticks([0.1] + list(range(1, self.transcript_num + self.ucsctransNum + 2)))
-                ax.set_yticklabels(['HISTONE'] + ['FANTOM5'] + ucsctranscrpt_list + transcript_list)   #y轴标签
-                ax.set_xticklabels([str(j) for j in [int(i) for i in np.linspace
-                (int(transcript_start) - 10, int(transcript_end) + 10, 2)]])
+                #ax.set_xticks(np.linspace(int(transcript_start) - 1000, int(transcript_end) + 1000, 2), ['a', 'b'] )
+                ax.set_yticks([-1, 0.1] + list(range(1, len(ylabelList) + 2)))
+                #ax.set_yticklabels(['Roadmap'] + ['FANTOM5'] + ylabelList)   #y轴标签
+                ax.set_yticklabels(['Chr' + eachLine_list[0] ] + ['Roadmap'] + ['FANTOM5'] + ylabelList)   #y轴标签
+                ax.set_xticklabels([str(j) for j in [int(i) for i in np.linspace(int(transcript_start) - 10, int(transcript_end) + 10, 2)]]); # MARK
+                #ax.set_xticklabels(["chr:"+str(int(transcript_start) - 10), str(int(transcript_end) + 10)]);
                 ax.spines['top'].set_visible(False)
                 ax.spines['left'].set_visible(False)
                 ax.spines['right'].set_visible(False)
@@ -158,9 +184,9 @@ class showGene(object):
                 ax.tick_params(axis=u'y', which=u'both', length=0)
                 #copy 左纵坐标，得到相同的右坐标
                 ax1 = ax.twinx()
-                ax1.set_ylim(-0.5, self.transcript_num+ self.ucsctransNum + 2)
-                ax1.set_yticks([0.1] + list(range(1, self.transcript_num+ self.ucsctransNum + 2)))
-                ax1.set_yticklabels([' '] + [' '] + lista)
+                ax1.set_ylim(-0.5, len(ylabelList) + 2)
+                ax1.set_yticks([0.1] + list(range(1, len(ylabelList) + 2)))
+                ax1.set_yticklabels([" "] + [" "] + ay1LabelList)
                 ax1.spines['top'].set_visible(False)
                 ax1.spines['left'].set_visible(False)
                 ax1.spines['right'].set_visible(False)
@@ -172,25 +198,28 @@ class showGene(object):
                     tick.label.set_fontsize(frontsize)
                 for tick in ax.yaxis.get_major_ticks():
                     tick.label.set_fontsize(frontsize)
+                tss_path = self.genename + '/tss.txt'
+                gtf_path = self.genename + '/' + self.genename + '.txt'         #gtf截取的基因文件名
                 if num == 0:
                     line1 = [int(transcript_start) - 1000, num + 0.1], [int(transcript_end) + 1000, num + 0.1]
                     (line1_xs, line1_ys) = zip(*line1)
                     ax.add_line(lines.Line2D(line1_xs, line1_ys, linewidth=0.5, c='black'))
-                    gtf_path = self.genename + '/' + self.genename + '.txt';#gtf截取的基因文件名
-                    his_files = os.listdir(self.histone_path);#遍历histone列表获取文件名
-                    colorList = ['red','blue','green','orange','pink','black'];#存储颜色
+                    his_files = os.listdir(self.histone_path)         #遍历histone列表获取文件名
+                    colorList = ['#9F0131','blue','green','orange','#8C564B','#9467BD']       #存储颜色
                     colornum = 0
                     for fi in his_files:                             #遍历得到每一个文件名，绘制箭头
-                        H3K4_path = self.genename + '/'+fi.split('.bed')[0]+'.txt';
-                        paint_H3K4.writefile(H3K4_path);
-                        H3K4transcriptList = paint_H3K4.readGTF(gtf_path);# 返回转录本信息列表
-                        histoneH3K4 = paint_H3K4.readHistone(H3K4transcriptList, self.histone_path + '/' + fi);#更新转录本信息，添加转录本距离
+                        # print(fi.split('.bed')[0])
+                        H3K4_path = self.genename + '/'+fi.split('.bed')[0]+'.txt'         # fi.split('.bed')[0] = 文件名
+                        paint_H3K4.writefile(H3K4_path)
+                        H3K4transcriptList = paint_H3K4.readGTF(gtf_path)               # 返回转录本信息列表
+                        histoneH3K4 = paint_H3K4.readHistone(H3K4transcriptList, self.histone_path + '/' + fi)   #更新转录本信息，添加转录本距离
+                        # print(histoneH3K4)
                         for each in histoneH3K4:
                             paint_H3K4.countTSS(each[5], H3K4_path)
                         for eachHis in histoneH3K4:  # 便遍历列表，绘制箭头
                             if eachHis[5] < 1000:
                                 int(eachHis[0]) + eachHis[
-                                    5];# ('70301925', '70302067', '-', '2', 'ENST00000460307', 46.5)
+                                    5]  # ('70301925', '70302067', '-', '2', 'ENST00000460307', 46.5)
                                 line = [(int(eachHis[0]) + eachHis[5] - 1, num + 0.1),
                                         (int(eachHis[1]) - eachHis[5] + 1, num + 0.1)]
                                 (line_xs, line_ys) = zip(*line)
@@ -201,12 +230,10 @@ class showGene(object):
                     line1 = [int(transcript_start)-1000, num + 0.1], [int(transcript_end)+1000, num + 0.1]
                     (line1_xs, line1_ys) = zip(*line1)
                     ax.add_line(lines.Line2D(line1_xs, line1_ys, linewidth=0.5, c='black'))
-                    tss_path = self.genename + '/tss.txt'
-                    gtf_path = self.genename + '/' + self.genename + '.txt'
-                    paint_H3K4.writefile(tss_path);
+                    paint_H3K4.writefile(tss_path)
                     # 返回转录本信息列表
                     tsstranscriptList = paint_H3K4.readGTF(gtf_path)
-                    tssList = paint_H3K4.readHistone(tsstranscriptList, self.tsssource_path)
+                    tssList = paint_H3K4.readHG38(tsstranscriptList, self.tsssource_path)
                     for each in tssList:
                         paint_H3K4.countTSS(each[5], tss_path)
                     for eachTss in tssList:
@@ -215,10 +242,12 @@ class showGene(object):
                             line = [(int(eachTss[0]) + eachTss[5] - 1, num + 0.1),
                                     (int(eachTss[1]) - eachTss[5] + 1, num + 0.1)]
                             (line_xs, line_ys) = zip(*line)
-                            ax.quiver(line_xs, line_ys, [0, 0], [0, 1], color='red', width=quver_width, scale=25)
+                            ax.quiver(line_xs, line_ys, [0, 0], [0, 1], color='#9F0131', width=quver_width, scale=25)
                     num = num + 1
-                if num-1 <= self.ucsctransNum :
+                if num - 1 <= self.ucsctransNum - reLabel:
                     setcolor = '#0013B3'
+                elif (num - 1 > self.ucsctransNum - reLabel) and (num - 1 <= self.ucsctransNum):
+                    setcolor = 'black'
                 else:
                     setcolor = '#9F0131'
                 line1 = [(int(eachLine_list[3]), num), (int(eachLine_list[4]), num)]
@@ -246,12 +275,16 @@ class showGene(object):
                     trStart.clear()
                     trEnd.clear()
 
-            fig.suptitle('\n\n\nchr' + str(eachLine_list[0]) + ': ' + self.genename + '\n Entrez Gene:' +
-                         self.Title[0] +'/Symbol ID:'+ self.Title[1], fontsize=10)
+            fig.suptitle('\n\n\n' + self.genename + '\n Entrez Gene:' +
+                         self.Title[0] +'/Symbol ID:'+ self.Title[1], fontsize=8)
+        #plt.ylabel('chr' + eachLine_list[0] +": "+eachLine_list[6])
+        # plt.text(-3, 20, 'chr' + str(eachLine_list[0]), size=15, alpha=1)
         fig.savefig(pdf_path, dpi=150)
         plt.close()
+        #画图
         self.paintTSS(self.genename + '/tss.pdf',tss_path)
-        his_files = os.listdir(self.histone_path);# 遍历histone列表获取文件名  绘制柱状图
+
+        his_files = os.listdir(self.histone_path)  # 遍历histone列表获取文件名  绘制柱状图
         for fi in his_files:
             self.paintTSS(self.genename +  '/' + fi.split('.bed')[0] + '.pdf', self.genename + '/' + fi.split('.bed')[0] + '.txt')
 
@@ -272,11 +305,12 @@ class showGene(object):
 
     def transferName(self,Gene_name):        #用户输入基因名，遍历name文件找该基因的别名
         Title = []
-        genename_path = os.path.split(os.path.realpath(__file__))[0]+'/'+'source/' + 'name.txt'
+        genename_path =  os.path.split(os.path.realpath(__file__))[0]+'/'+'source/' + 'name.txt'
         f = open(genename_path, 'r')
         allLines = f.readlines()
         for eachLine in allLines:
             eachLine_list = eachLine.split('\t')
+            # print(eachLine_list[2])
             if Gene_name == eachLine_list[0]:
                 Title = eachLine_list
             elif Gene_name == eachLine_list[1]:

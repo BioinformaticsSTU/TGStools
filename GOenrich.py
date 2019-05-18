@@ -28,7 +28,7 @@ def GOenrich(input, threshold, number, type, prefix):
 	p_threshold=float(threshold); # 0.05
 	num=int(number); #500
 	if(not os.path.exists(input)):
-		print(input+" doesn't exist!");
+		print("Error: "+input+" doesn't exist!");
 		return();
 	if(not type in ["bar", "scatter", "all"]):
 		print("Error: arguement type wrong!");
@@ -156,8 +156,8 @@ def GOenrich(input, threshold, number, type, prefix):
 		NUM=[];
 		for num in GENES_NUM:
 			NUM.append(100*num);
-		sc = plt.scatter(GO_value, TERMS, c=GO_value, vmin=0, s=NUM, cmap=cm);
-		plt.colorbar(sc);
+		sc = plt.scatter(GO_value, TERMS, c=GENES_NUM, vmin=0, s=200, cmap=cm);
+		plt.colorbar(sc, label="Counts of gene");
 		plt.xlabel("-lg(P)");
 		plt.title("GO enrichment");
 		plt.show()
