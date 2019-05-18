@@ -24,9 +24,9 @@ def extract_lncRNA_gtf(input, outfile, gtf):
 	FileType = gtf
 	try:
 		if not os.path.exists(inPutFileName):
-			print("input doesn't exist!")
+			print("Error: "+inPutFileName+" doesn't exist!")
 	except:
-		print("input doesn't exist!")
+		print("Error: "+inPutFileName+" doesn't exist!")
 	try:
 		if not outPutFileName:
 			print("outfile doesn't exist!")

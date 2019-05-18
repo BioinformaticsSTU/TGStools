@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import optparse
 
 #FileName = raw_input('Please enter your a file name: ')
+"""
 parse=optparse.OptionParser()
 parse.add_option('-g','--gtf',dest='gtf',action='store',metavar='input gtf files',help='enter your transcript gtf)')
 parse.add_option('-p','--path',dest='path',action='store',metavar='histone or fantom5 txt file path',help='please enter your txt files')
@@ -15,7 +16,7 @@ GTF = options.gtf
 PATH = options.path
 FLAG = options.flag
 
-
+"""
 
 
 def writefile(file_path):
@@ -115,16 +116,15 @@ def readHG38(transcirptList,source_path):
                     list1 = re.findall('chr' + eachTranscirpt[3] + ':(.*?),',chrtext)         # list[0] = ['160709055..160709074']
                     each_g38_list = list1[0].split('..')                                        # eachunumlist = ['160709055', '160709074']
                     trandistance = int(eachTranscirpt[0]) + abs(int(eachTranscirpt[1]) -  int(eachTranscirpt[0]))/2       #取外显子的中点与tss中点对比找范围1000以内的值
-                    start = each_g38_list[0]
-                    end = each_g38_list[1]
-                    if int(start) >= (trandistance - 1000) and int(end) <= (trandistance + 1000):
-                        print('11111111')
-                        standend = abs(int(start) + abs(int(end) - int(start)) / 2 - trandistance)  # histone下的start和end中位置减去转录本的位置，即histone与位点的距离
+                    # start = each_g38_list[0]
+                    # end = each_g38_list[1]
+                    g38distance = int(each_g38_list[0]) + abs(int(each_g38_list[1]) -  int(each_g38_list[0]))/2
+                    if g38distance >= (trandistance - 1000) and g38distance <= (trandistance + 1000):
+                        # print('11111111')
+                        standend = abs(g38distance - trandistance)  # histone下的start和end中位置减去转录本的位置，即histone与位点的距离
                         if standend < eachTranscirpt[5]:
                             transcirptList[index] = (eachTranscirpt[0], eachTranscirpt[1], eachTranscirpt[2], eachTranscirpt[3],eachTranscirpt[4], standend)
 
-    for each in transcirptList:
-        countTSS(each[5])
     return transcirptList
 
 def countTSS(distanceTss,file_path):         # count distance  -->txt    flag==ture,画小于1000的数
@@ -187,7 +187,7 @@ def chooseFile(gtf_path,source_path,flag):
             for each in tssList:
                 countTSS(each[5], tss_path + '.txt')
             paintTSS(tss_path + '.pdf', tss_path + '.txt')
-    elif flag == 'histon':
+    elif flag == 'histom':
         his_files = os.listdir(source_path)  # 遍历histone列表获取文件名
         for fi in his_files:  # 遍历得到每一个文件名
             # print(fi.split('.bed')[0])
@@ -198,6 +198,7 @@ def chooseFile(gtf_path,source_path,flag):
             for each in histoneH3K4:
                 countTSS(each[5], H3K4_path + '.txt')
             paintTSS(H3K4_path + '.pdf',H3K4_path + '.txt')
+
 
 if __name__ == '__main__':
     chooseFile(GTF,PATH,FLAG)

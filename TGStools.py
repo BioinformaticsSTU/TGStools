@@ -8,7 +8,7 @@ def create_parser(subparsers, fun):
 		parser_geneDisplay = subparsers.add_parser('geneDisplay', help='create a macroscopic image showing transcripts of queried gene');
 		group_input = parser_geneDisplay.add_argument_group("Input files arguments");
 		group_input.add_argument('-g','--gtf', required=True, help="gtf file");
-		group_input.add_argument('-q','--quant', required=True, help="quantity of transcript");
+		group_input.add_argument('-q','--quant', required=False, help="quantity of transcript");
 		group_input.add_argument('-i','--id', required=True, help="gene id that you want to query");
 		group_input.add_argument('-p','--path', required=True, help="directory which contain histone files or fatom5 files");
 		return(parser_geneDisplay);
@@ -18,6 +18,7 @@ def create_parser(subparsers, fun):
 		group_input.add_argument('-g','--gtf', required=True, help="gtf file");
 		group_input.add_argument('-f','--flag', required=True, choices=['histone', 'fantom5'], help="flag that tells programme the type of files in path");
 		group_input.add_argument('-p','--path', required=True, help="directory which contain histone files or fatom5 files");
+		group_input.add_argument('-r','--prefix', required=True, help="prefix of output files");
 		return(parser_staDist);
 	if(fun=="staAS"):
 		parser_staAS = subparsers.add_parser('staAS', help='calculate the proportion of each alternative splicing event in different samples and create graphs');
@@ -46,7 +47,7 @@ def create_parser(subparsers, fun):
 		group_input = parser_INCP.add_argument_group("Input files arguments");
 		group_input.add_argument('-i','--input', required=True, help="transcript file(sequence or gtf format)");
 		group_input.add_argument('-p','--parallel', required=True, help="specified speed ratio");
-		group_input.add_argument('-g','--gtf', required=False, help="please enter your gtf files");
+		group_input.add_argument('-g','--gtf', required=False, dest='gtf',action='store_true', help="please enter your gtf files");
 		group_input.add_argument('-r','--reference', required=False, help="if your input file is gtf format please enter RefGenome directory");
 		return(parser_INCP);
 	if(fun=="extract_lncRNA_gtf"):
@@ -95,11 +96,14 @@ def main():
 	############
 	if subcommand == "geneDisplay":
 		from geneDisplay import geneDisplay
-		geneDisplay(args.gtf, args.id, args.quant, args.path);
+		if(args.quant):
+			geneDisplay(args.gtf, args.id, args.quant, args.path);
+		else:
+			geneDisplay(args.gtf, args.id, "", args.path);
 
 	if subcommand == "staDist":
 		from staDist import staDist
-		staDist(args.gtf, args.path, args.flag);
+		staDist(args.gtf, args.path, args.flag, args.prefix);
 
 	if subcommand == "staAS":
 		from staAS import staAS

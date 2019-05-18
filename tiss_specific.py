@@ -30,6 +30,10 @@ def tiss_specific(outfile, tss, hg, files):
 	refgene = hg
 	PATH=os.path.split(os.path.realpath(__file__))[0]
 	inPutFileNames = list(files.split(","))
+	for tmp in inPutFileNames:
+		if(not os.path.exists(tmp)):
+			print("Error: "+tmp+" doesn't exist!");
+			return();
 	df = pd.read_csv(PATH+"/"+"expression.txt",sep='\t')
 	col_name_del_probes_De=list(df.columns)
 	col_name_del_probes_De.remove("Probes")

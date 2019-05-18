@@ -94,9 +94,9 @@ def INCP(file, parallel, gtf, reference):
 	outPutFileName=os.path.splitext(inPutFileName)[0]
 	try:
 		if not os.path.exists(inPutFileName):
-			print("inPut doesn't exist!")
+			print("Error: "+inPutFileName+" doesn't exist!")
 	except:
-		print("inPut doesn't exist!")
+		print("Error: "+inPutFileName+" doesn't exist!")
 
 	#CNCI and PLEK code
 	if FileType:
@@ -161,7 +161,7 @@ def INCP(file, parallel, gtf, reference):
 	#venny
 	figure = plt.figure()
 	venn2([set(gi_p), set(gi_c)], set_labels = ('PLEK', 'CNCI'),)
-	plt.title("Venn diagram between the lncRNA output of the PLEK and CNCI")
+	plt.title("lncRNA predicted by PLEK and CNCI")
 	figure.savefig('Venn_diagram_'+outPutFileName+'.pdf', bbox_inches='tight')
 	plt.close()
 	pl_fr.close()

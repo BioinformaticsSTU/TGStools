@@ -27,25 +27,29 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
-Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
-
+Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks such as display transcripts of gene, characterizing the full-length transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
+The package has also contained test data(TEST.zip) for testing.
 
 ----------------------------
 # Installation
 ----------------------------
 
-TGStools has been developed under linux and Python 3.5. In order to install TGStools successfully, it should be installed in conda environment and dependencies of TGStools are also designed to be installed through conda command.
-It's quite simple to install TGStools. By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
-
+TGStools can run under linux and Python 3.5. In order to install TGStools successfully, it should be installed in ***conda*** environment and dependencies of TGStools are also designed to be installed through ***conda command***.
 Conda should be installed and activate.
 ```
 conda create -n python3 python=3.5
 source activate python3
 ```
-After conda environment has been activated, TGStools can be install through command below.
+Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in OneDrive and you can download supplement data 
+[here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
+) and then put this file in ***source*** directory.
+After conda environment has been activated, TGStools can be installed through command below.
+By running setup.sh, TGStools and depedencies(PLEK, CNCI, libsvm, matplotlib, matplotlib_venn, pandas and gseapy) will be installed automatically.
 ```
 source setup.sh
 ```
+
+
 ----------------------------
 # Command and subcommand structure
 ----------------------------
@@ -58,21 +62,23 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **geneDisplay**    : create a macroscopic image showing transcripts of queried gene
-- **staDist**    : statistics the distance of transcript-start-site to the closest histone or fantom5
-- **INCP**    : an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file).
-- **extract_lncRNA_gtf**       : A tool that extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
-- **tiss_specific**       : A tool that extract cancer-specific lncRNA information of GTF format.
+- **geneDisplay**    :  isoforms comparison of queried gene with auxiliary annotation.
+- **staDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+- **INCP**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
+- **extract_lncRNA_gtf**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
+- **tiss_specific**       : extract tissue-specific lncRNA information of GTF format.
 - **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
-- **calScoreD**     : calculate score_D(its formula can be seen below) of each gene.
-- **GOenrich**     : select top genes and do GO enrichment analysis.
+- **calScoreD**     : select the most spliced genes based on a score_D(its formula can be seen below) of each gene.
+- **GOenrich**     : select top ranked genes and conduct GO enrichment analysis.
 
 
 ----------------------------
 ## geneDisplay
 ----------------------------
 
-By providing GTF files, gene id and trans_quant files(quantity of transcripts) to get the macroscopic image which display the transcripts expression of queried gene. Similar to UCSC's gene query, users could provide multiple epigenetic data in the same folder, and transcripts and epigenetic data will be drawn under the gene.
+By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get isoforms comparison of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
+
+For your convenience, we have upload epigenetic marks data in OneDrive. Uploaded data contains 3 types of histone marks from 15 tissues. You can download data [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU).
 
 ### Input files
 
@@ -86,7 +92,7 @@ chr14 Ensembl exon  73750789  73751082  0.0 - . gene_id "ENSG00000000001"; trans
 chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; transcript_id "ENST00000000001.1"; 
 ```
 
-#### path of histone files or fatom5 files
+#### path of auxiliary annotations files
 
 #### trans_quant
 ```
@@ -108,18 +114,20 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 - **-q**  | **--quant**: quantity of transcript
 
-- **-p**  | **--path**: directory which contain histone files or fatom5 files
+- **-p**  | **--path**: path of auxiliary annotations.
 
 ### Example
 ```
 python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
+or
+python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -p histone
 ```
 
 ### Output files
 
 
-#### display of transcripts expression
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/ENSG00000035141.png" width = "550" height = "400"  />
+#### isoforms comparison
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/ENSG00000035141.png" width = "550" height = "400"  />
 ENSG00000035141.pdf
 
 
@@ -127,13 +135,15 @@ ENSG00000035141.pdf
 ## staDist
 ----------------------------
 
-statistics the distance of transcript start site to the closest histone or fantom5
+Distances distribution of transcript-start-site(TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+
+**This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
 #### gtf file
 
-#### directory which contain histone files or fatom5 files
+#### directory which contains auxiliary annotations files
 
 ### Usage
 ```
@@ -142,34 +152,35 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 - **-g**  | **--gtf**: gtf file
 
-- **-p**  | **--path**: directory which contain histone files or fatom5 files
+- **-p**  | **--path**: directory which contains auxiliary annotations files
 
 - **-f**  | **--flag**: flag that tells programme the type of files in path
 
+- **-r**  | **--prefix**: prefix of output files
 
 ### Example
 ```
-python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone
+python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone -r TEST
 or
-python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5
+python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5 -r TEST
 ```
 
 ### Output files
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/staDist.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/staDist.png" width = "550" height = "400"  />
 staDist.pdf
 
 ----------------------------
 ## INCP
 ----------------------------
 
-an integration classification tool of CNCI and PLEK for identify coding or non-coding transcripts (fasta file and gtf file)
+INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
 
 #### hg19.2bit and hg38.2bit
-hg19.2bit and hg38.2bit are 2bit format of human genomes which can be downloaded on UCSC.
+[hg19.2bit](http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit) and [hg38.2bit](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.2bit) are 2bit format of human genomes which can be downloaded on UCSC.
 
 #### gtf file
 An annotation file in GTF format is like:
@@ -201,7 +212,7 @@ python3 TGStools.py INCP -i <file> -p <parallel>
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
 
-- **-p**  | **--parallel**: assign the running CUP numbers
+- **-p**  | **--parallel**: assign the running CPU numbers which should not larger than the CPU number your computer has
 
 - **-g**  | **--gtf**: if your input file is gtf format please use this parameter
 
@@ -233,7 +244,7 @@ output of intersect of the software CNCI and PLEK, in which the first column is 
 #### venny_plek_cnci.pdf 
 the summary of the venny between the output of the CNCI and PLEK
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/venn.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/venn.png" width = "550" height = "400"  />
 
 venny image
 
@@ -241,7 +252,7 @@ venny image
 ## extract_lncRNA_gtf
 ----------------------------
 
-extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
+Extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
 
 ### Input files
 
@@ -280,28 +291,25 @@ output file extract lncRNA information of GTF format
 ## tiss_specific
 ----------------------------
 
-extract cancer-specific lncRNA information of GTF format
-
-**If you want to run this step faster, skip the parameter -t.**
+extract tissue-specific lncRNA information of GTF format.  
+**This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**  
+**If you want to run this step faster, input control and cancer sample and skip the parameter -t.**
 
 ### Input files
 
 #### FILE 
 files of the candidate lncRNA gtf format.
 
-#### TISSUE FILE
-
-
 ### Usage
 ```
-python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tss>] -r <reference> -o <out>
+python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
-- **-i**  | **--input**: input files of the candidate lncRNA gtf format, if the input files have two splited by ',', the first set control sample, the other set cancer sample. If the input files have only one, there are two situations. The one is based on a background control tissue. The other have not a background control tissue. Related knowledge can refer to the  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
+- **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. This step get cancer-specific transctipts from these file. If there is only one input file, background control tissue must be added. Refer to for more information https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
 
-- **-t**  | **--tissue**: set tissue name if input files have the only one. If there are two input files, this parameter can be ignored.The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
+- **-t**  | **--tissue**: set tissue name if there is only one input file. If there are two input files, this parameter should be ignored. The background control tissue : 'adipose', 'adrenal', 'brain', 'breast', 'colon', 'heart', 'kidney', 'liver', 'lung', 'lymphNode', 'ovary', 'prostate', 'skeltalMuscle', 'whiteBloodCell', 'testes', 'thyroid', 'placenta', 'foreskin', 'hLF'.
 
-- **-r**  | **--reference**: set refgene name,'hg38' and 'hg19' can be chosen.
+- **-r**  | **--reference**: refgene name, 'hg38' and 'hg19' can be chosen.
 
 - **-o**  | **--out**: output name extracted lncRNA-specific information of GTF format
 
@@ -316,7 +324,7 @@ GTF file which extract lncRNA-specific information
 ----------------------------
 ## staAS
 ----------------------------
-calculate the proportion of each alternative splicing event in different samples and create graphs.
+Analyzing alternative events by SUPPA and calculate the proportion of each alternative splicing event in different samples and produce graphs.
 ### Input files
 
 #### gtf file
@@ -339,7 +347,6 @@ List of options available:
 
 - **-p**  | **--prefix**: prefix of output files
 
-The command line to generate local AS events will be of the form:
 
 ### Example
 ```
@@ -359,30 +366,46 @@ SHEE	2849	2666	6876	954	389	3851	4870
 TE5	1922    1870    4182    611     328     2553    4288
 ```
 
+#### Chi-square test result of samples in pair
+TEST_chi2_result.txt
+```
+chi-square test result of K510 and K140:
+chisq-statistic=14.5507, p-value=0.0241, df=6 expected_frep=[[ 2583.5706325   2687.58521866  5640.62432911  1202.66865258
+    429.06016795  3132.35592306  5420.13507614]
+ [ 2185.4293675   2273.41478134  4771.37567089  1017.33134742
+    362.93983205  2649.64407694  4584.86492386]].
+Proportion of alternative splicing in samples has difference.
+
+chi-square test result of K510 and SHEEC:
+chisq-statistic=127.8865, p-value=0.0000, df=6 expected_frep=[[ 2734.06990745  2758.08069009  5353.77266601  1011.61218438
+    456.83673286  3307.1693773   5474.45844191]
+ [ 1592.93009255  1606.91930991  3119.22733399   589.38781562
+    266.16326714  1926.8306227   3189.54155809]].
+Proportion of alternative splicing in samples has difference.
+```
+
 #### bar image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_bar.1.png" width = "500" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_bar.1.png" width = "500" height = "400"  />
 TEST_bar.png
 
 #### barh_align image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_barh_align.1.png" width = "400" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_barh_align.1.png" width = "400" height = "400"  />
 TEST_barh_align.png
 
 ----------------------------
 ## calScoreD
 ----------------------------
 
-calculate score_D of each gene
-
-To quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
-
-<img src="https://github.com/BioinformaticsSTU/SMRCanaToolkits/blob/master/CDZ/formula.png"  />
-
+select the most spliced genes based on a score_D of each gene.
+In order to quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
 where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
+Genes with a higher D value are more diversely spliced.
 
 ### Input files
 
 #### ioi file
-ioi file contains the transcript "events" of gene. produced by staAS, cantained in *_Event dietctory.
+ioi file which contains transcript "events" of each gene in *_Event dietctory and produced at last step staAS.
 
 ### Usage
 ```
@@ -419,7 +442,7 @@ ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	
 ## GOenrich
 ----------------------------
 
-select top genes and make GO enrichment analysis
+select top ranked genes from score_D result and conduct GO enrichment analysis
 
 ### Input files
 
@@ -433,9 +456,9 @@ List of options available:
 
 - **-i**  | **--input**: score D result
 
-- **-t**  | **--threshold**: threshold for adjusted p-value
+- **-t**  | **--threshold**: threshold for adjusted p-value of GO enrichment analysis result
 
-- **-n**  | **--number**: number of top genes for analysis
+- **-n**  | **--number**: number of score_D top ranked genes 
 
 - **-f**  | **--type**: type of image, 'bar' and 'scatter' can be chosen
 
@@ -458,15 +481,12 @@ GO_Biological_Process_2018	double-strand break repair (GO:0006302)	11/142	0.0002
 ```
 
 #### barh image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_barh.png"  width="600" height="450" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_GO_barh.png"  width="600" height="450" />
 TEST_GO_enrichment_barh.png
 
 #### scatter image
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/TEST_GO_scatter.png" width="600" height="400" />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/TEST_GO_scatter.png" width="600" height="400" />
 TEST_GO_enrichment_scatter.png
-
-
-
 
 
 ----------------------------

@@ -23,7 +23,7 @@ def calScoreD(control, treated, prefix):
 		directory=sample+"_Events/";
 		file=directory+sample+".ioi";
 		if(not os.path.exists(file)):
-			print(file+" doesn't exist!");
+			print("Error: "+file+" doesn't exist!");
 			return();
 		fp=open(file, "r");
 		line=fp.readline();
