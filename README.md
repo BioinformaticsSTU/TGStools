@@ -9,10 +9,10 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [TransList](#TransList)
+      * [TransDisp](#TransDisp)
       * [StaDist](#StaDist)
 	  * [TransFilt](#TransFilt)
-      * [Incp](#Incp)
+      * [LncPred](#LncPred)
       * [LncExt](#LncExt)
       * [LncExtTiss](#LncExtTiss)
       * [StaAS](#StaAS)
@@ -63,9 +63,9 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **TransList**    :  isoforms comparison of queried gene with auxiliary annotation.
+- **TransDisp**    :  isoforms comparison of queried gene with auxiliary annotation.
 - **StaDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
-- **Incp**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
+- **LncPred**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
 - **LncExt**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **LncExtTiss**       : extract tissue-specific lncRNA information of GTF format.
 - **StaAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
@@ -74,7 +74,7 @@ where the subcommand can be one of these:
 
 
 ----------------------------
-## TransList
+## TransDisp
 ----------------------------
 
 By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get isoforms comparison of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
@@ -106,7 +106,7 @@ i2_LQ_K5103rd_c52655/f1p22/2851	ENST00000489294	ENSG00000152332
 
 ### Usage
 ```
-python3 TGStools.py TransList -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
+python3 TGStools.py TransDisp -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 ```
 
 - **-g**  | **--gtf**: gtf file
@@ -119,9 +119,9 @@ python3 TGStools.py TransList -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 ### Example
 ```
-python3 TGStools.py TransList -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
+python3 TGStools.py TransDisp -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
 or
-python3 TGStools.py TransList -g K510_3rd.gtf  -i ENSG00000035141 -p histone
+python3 TGStools.py TransDisp -g K510_3rd.gtf  -i ENSG00000035141 -p histone
 ```
 
 ### Output files
@@ -193,15 +193,15 @@ This function would filter those transcripts whose distance between its transcri
 An annotation file in GTF format.
 
 #### transDist file
-Created by function StaDist. Distance between transcript-start-site of transcript to the closest histone site.
+Created by function StaDist. It contains the distance between transcript-start-site of transcript to the closest histone site.
 
 ### Usage
 ```
-python3 TGStools.py TransFilt -g <gtf> -d <transDist> -t <threshold> -p <prefix>
+python3 TGStools.py TransFilt -g <gtf> -d <distance> -t <threshold> -p <prefix>
 ```
 
 - **-g**  | **--gtf**: gtf file
-- **-d**  | **--transDist**: transDist file
+- **-d**  | **--distance**: distance between transcript-start-site to the closest histone site
 - **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest histone site
 - **-p**  | **--prefix**: prefix of output files
 
@@ -214,10 +214,10 @@ python3 TGStools.py TransFilt -g K510_3rd.gtf -d transDist.txt -t 1000 -p TransF
 #### gtf file
 
 ----------------------------
-## Incp
+## LncPred
 ----------------------------
 
-Incp(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
+LncPred(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
@@ -248,9 +248,9 @@ Note: fasta file format must be the twolineFasta
 
 ### Usage
 ```
-python3 TGStools.py Incp -i <file> -p <parallel> -r <reference> -g
+python3 TGStools.py LncPred -i <file> -p <parallel> -r <reference> -g
 or 
-python3 TGStools.py Incp -i <file> -p <parallel>
+python3 TGStools.py LncPred -i <file> -p <parallel>
 ```
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -263,9 +263,9 @@ python3 TGStools.py Incp -i <file> -p <parallel>
 
 ### Example
 ```
-python3 TGStools.py Incp -i candidate.gtf -p 6 -g -r hg38.2bit
+python3 TGStools.py LncPred -i candidate.gtf -p 6 -g -r hg38.2bit
 or 
-python3 TGStools.py Incp -i candidate.fasta -p 6
+python3 TGStools.py LncPred -i candidate.fasta -p 6
 ```
 
 ### Output files
@@ -316,9 +316,9 @@ ENSG00000118482_novel07 noncoding       -0.0217088      2166    2355    2510
 python3 TGStools.py LncExt -i <file> -g <gtf> -o <out>
 ```
 
-- **-i**  | **--input**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of Incp
+- **-i**  | **--input**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of LncPred
 
-- **-g**  | **--gtf**: GTF file corresponding to fasta in the incp, where the last column contain the tanscript ID
+- **-g**  | **--gtf**: GTF file corresponding to fasta in the LncPred, where the last column contain the tanscript ID
 
 - **-o**  | **--out**: output name extracted lncRNA information of GTF format
 
