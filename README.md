@@ -186,7 +186,7 @@ trans_dist.txt
 ----------------------------
 ## TransFilt
 ----------------------------
-This function would filter those transcripts whose distance between its transcript-start-site to the closest histone site is larger than the threshold user gives.
+This function would filter out those transcripts whose distance between its transcript-start-site to the closest histone site is larger than the threshold user gives.
 
 ### Input files
 #### gtf file
@@ -201,7 +201,7 @@ python3 TGStools.py TransFilt -g <gtf> -d <distance> -t <threshold> -p <prefix>
 ```
 
 - **-g**  | **--gtf**: gtf file
-- **-d**  | **--distance**: distance between transcript-start-site to the closest histone site
+- **-d**  | **--distance**: file of distance between transcript-start-site to the closest histone site
 - **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest histone site
 - **-p**  | **--prefix**: prefix of output files
 
