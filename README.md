@@ -9,14 +9,15 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Overview](#overview)
    * [Installation](#installation)
    * [Command and subcommand structure](#command-and-subcommand-structure)
-      * [geneDisplay](#geneDisplay)
-      * [staDist](#staDist)
-      * [INCP](#INCP)
-      * [extract_lncRNA_gtf](#extract_lncrna_gtf)
-      * [tiss_specific](#tiss_specific)
-      * [staAS](#staas)
-      * [calScoreD](#calscored)
-      * [GOenrich](#goenrich)
+      * [TransList](#TransList)
+      * [StaDist](#StaDist)
+	  * [TransFilt](#TransFilt)
+      * [Incp](#Incp)
+      * [LncExt](#LncExt)
+      * [LncExtTiss](#LncExtTiss)
+      * [StaAS](#StaAS)
+      * [CalScoreD](#CalScoreD)
+      * [GOEnrich](#GOEnrich)
 
    * [License](#license)
 
@@ -62,18 +63,18 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **geneDisplay**    :  isoforms comparison of queried gene with auxiliary annotation.
-- **staDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
-- **INCP**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
-- **extract_lncRNA_gtf**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
-- **tiss_specific**       : extract tissue-specific lncRNA information of GTF format.
-- **staAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
-- **calScoreD**     : select the most spliced genes based on a score_D(its formula can be seen below) of each gene.
-- **GOenrich**     : select top ranked genes and conduct GO enrichment analysis.
+- **TransList**    :  isoforms comparison of queried gene with auxiliary annotation.
+- **StaDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+- **Incp**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
+- **LncExt**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
+- **LncExtTiss**       : extract tissue-specific lncRNA information of GTF format.
+- **StaAS**        : calculate the proportion of each alternative splicing event in different samples and create graphs.
+- **CalScoreD**     : select the most spliced genes based on a score_D(its formula can be seen below) of each gene.
+- **GOEnrich**     : select top ranked genes and conduct GO enrichment analysis.
 
 
 ----------------------------
-## geneDisplay
+## TransList
 ----------------------------
 
 By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get isoforms comparison of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
@@ -105,7 +106,7 @@ i2_LQ_K5103rd_c52655/f1p22/2851	ENST00000489294	ENSG00000152332
 
 ### Usage
 ```
-python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
+python3 TGStools.py TransList -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 ```
 
 - **-g**  | **--gtf**: gtf file
@@ -118,9 +119,9 @@ python3 TGStools.py geneDisplay -g <gtf> -i <gene_id> -q <trans_quant> -p <path>
 
 ### Example
 ```
-python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
+python3 TGStools.py TransList -g K510_3rd.gtf  -i ENSG00000035141 -q trans_quant.txt  -p histone
 or
-python3 TGStools.py geneDisplay -g K510_3rd.gtf  -i ENSG00000035141 -p histone
+python3 TGStools.py TransList -g K510_3rd.gtf  -i ENSG00000035141 -p histone
 ```
 
 ### Output files
@@ -132,7 +133,7 @@ ENSG00000035141.pdf
 
 
 ----------------------------
-## staDist
+## StaDist
 ----------------------------
 
 Distances distribution of transcript-start-site(TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
@@ -147,7 +148,7 @@ Distances distribution of transcript-start-site(TSS ) in each full-length transc
 
 ### Usage
 ```
-python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
+python3 TGStools.py StaDist -g <gtf> -p <path> -f <flag>
 ```
 
 - **-g**  | **--gtf**: gtf file
@@ -160,9 +161,9 @@ python3 TGStools.py staDist -g <gtf> -p <path> -f <flag>
 
 ### Example
 ```
-python3 TGStools.py staDist -g K510_3rd.gtf  -p histone  -f histone -r TEST
+python3 TGStools.py StaDist -g K510_3rd.gtf  -p histone  -f histone -r TEST
 or
-python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5 -r TEST
+python3 TGStools.py StaDist -g K510_3rd.gtf  -p fantom5  -f fantom5 -r TEST
 ```
 
 ### Output files
@@ -170,11 +171,53 @@ python3 TGStools.py staDist -g K510_3rd.gtf  -p fantom5  -f fantom5 -r TEST
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/staDist.png" width = "550" height = "400"  />
 staDist.pdf
 
+```
+ENST00000377100	137
+ENST00000357081	104
+ENST00000376083	76
+ENST00000566423	33
+ENST00000568196	54
+ENST00000564163	71
+ENST00000249822	48
+ENST00000563277	53
+```
+trans_dist.txt
+
 ----------------------------
-## INCP
+## TransFilt
+----------------------------
+This function would filter those transcripts whose distance between its transcript-start-site to the closest histone site is larger than the threshold user gives.
+
+### Input files
+#### gtf file
+An annotation file in GTF format.
+
+#### transDist file
+Created by function StaDist. Distance between transcript-start-site of transcript to the closest histone site.
+
+### Usage
+```
+python3 TGStools.py TransFilt -g <gtf> -d <transDist> -t <threshold> -p <prefix>
+```
+
+- **-g**  | **--gtf**: gtf file
+- **-d**  | **--transDist**: transDist file
+- **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest histone site
+- **-p**  | **--prefix**: prefix of output files
+
+### Example
+```
+python3 TGStools.py TransFilt -g K510_3rd.gtf -d transDist.txt -t 1000 -p TransFilt
+```
+
+### Output files
+#### gtf file
+
+----------------------------
+## Incp
 ----------------------------
 
-INCP(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
+Incp(identify non-coding transcript from CNCI and PLEK) is an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts(fasta file and gtf file).  
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
 ### Input files
@@ -205,9 +248,9 @@ Note: fasta file format must be the twolineFasta
 
 ### Usage
 ```
-python3 TGStools.py INCP -i <file> -p <parallel> -r <reference> -g
+python3 TGStools.py Incp -i <file> -p <parallel> -r <reference> -g
 or 
-python3 TGStools.py INCP -i <file> -p <parallel>
+python3 TGStools.py Incp -i <file> -p <parallel>
 ```
 
 - **-i**  | **--input**: input file of fasta file or gtf file, if the input is fasta file,the file format must be the twolineFasta
@@ -220,9 +263,9 @@ python3 TGStools.py INCP -i <file> -p <parallel>
 
 ### Example
 ```
-python3 TGStools.py INCP -i candidate.gtf -p 6 -g -r hg38.2bit
+python3 TGStools.py Incp -i candidate.gtf -p 6 -g -r hg38.2bit
 or 
-python3 TGStools.py INCP -i candidate.fasta -p 6
+python3 TGStools.py Incp -i candidate.fasta -p 6
 ```
 
 ### Output files
@@ -249,7 +292,7 @@ the summary of the venny between the output of the CNCI and PLEK
 venny image
 
 ----------------------------
-## extract_lncRNA_gtf
+## LncExt
 ----------------------------
 
 Extract lncRNA information from GTF file based on the tanscript ID of the candidate lncRNA. This tool is only for result of gtf mode.
@@ -270,10 +313,10 @@ ENSG00000118482_novel07 noncoding       -0.0217088      2166    2355    2510
 
 ### Usage
 ```
-python3 TGStools.py extract_lncRNA_gtf -i <file> -g <gtf> -o <out>
+python3 TGStools.py LncExt -i <file> -g <gtf> -o <out>
 ```
 
-- **-i**  | **--input**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of INCP
+- **-i**  | **--input**: input file of the candidate lncRNA, in which the first column is the tanscript ID of the candidate lncRNA. This file also can be the output file of Incp
 
 - **-g**  | **--gtf**: GTF file corresponding to fasta in the incp, where the last column contain the tanscript ID
 
@@ -281,14 +324,14 @@ python3 TGStools.py extract_lncRNA_gtf -i <file> -g <gtf> -o <out>
 
 ### Example
 ```
-python3 TGStools.py extract_lncRNA_gtf -i intersect_plek_cnci.txt -g unannotation.gtf -o out
+python3 TGStools.py LncExt -i intersect_plek_cnci.txt -g unannotation.gtf -o out
 ```
 
 ### Output files
 output file extract lncRNA information of GTF format
 
 ----------------------------
-## tiss_specific
+## LncExtTiss
 ----------------------------
 
 extract tissue-specific lncRNA information of GTF format.  
@@ -302,7 +345,7 @@ files of the candidate lncRNA gtf format.
 
 ### Usage
 ```
-python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
+python3 TGStools.py LncExtTiss -i <file>[,<file>] [-t <tissue>] -r <reference> -o <out>
 ```
 
 - **-i**  | **--input**: input files of the candidate lncRNA. If there are two input files which was splited by ',', the first file is of control sample, the other is of cancer sample. This step get cancer-specific transctipts from these file. If there is only one input file, background control tissue must be added. Refer to for more information https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3185964/
@@ -315,14 +358,14 @@ python3 TGStools.py tiss_specific -i <file>[,<file>] [-t <tissue>] -r <reference
 
 ### Example
 ```
-python3 TGStools.py tiss_specific -i sample.gtf[,control.gtf] -t breast -r hg38 -o out.gtf
+python3 TGStools.py LncExtTiss -i sample.gtf[,control.gtf] -t breast -r hg38 -o out.gtf
 ```
 
 ### Output files
 GTF file which extract lncRNA-specific information
 
 ----------------------------
-## staAS
+## StaAS
 ----------------------------
 Analyzing alternative events by SUPPA and calculate the proportion of each alternative splicing event in different samples and produce graphs.
 ### Input files
@@ -339,7 +382,7 @@ chr14 Ensembl exon  73753818  73754022  0.0 - . gene_id "ENSG00000000001"; trans
 
 ### Usage
 ```
-python3 TGStools.py staAS -n <names> -p <prefix>
+python3 TGStools.py StaAS -n <names> -p <prefix>
 ```
 List of options available:
 
@@ -350,7 +393,7 @@ List of options available:
 
 ### Example
 ```
-python3 TGStools.py staAS -n K140.gtf,K510.gtf,SEC.gtf,SHEE.gtf,TE5.gtf -p TEST
+python3 TGStools.py StaAS -n K140.gtf,K510.gtf,SEC.gtf,SHEE.gtf,TE5.gtf -p TEST
 ```
 
 ### Output files
@@ -393,7 +436,7 @@ TEST_bar.png
 TEST_barh_align.png
 
 ----------------------------
-## calScoreD
+## CalScoreD
 ----------------------------
 
 select the most spliced genes based on a score_D of each gene.
@@ -405,11 +448,11 @@ Genes with a higher D value are more diversely spliced.
 ### Input files
 
 #### ioi file
-ioi file which contains transcript "events" of each gene in *_Event dietctory and produced at last step staAS.
+ioi file which contains transcript "events" of each gene in *_Event dietctory and produced at last step StaAS.
 
 ### Usage
 ```
-python3 TGStools.py calScoreD -c <control> -t <treated> -p <prefix>
+python3 TGStools.py CalScoreD -c <control> -t <treated> -p <prefix>
 ```
 List of options available:
 
@@ -423,7 +466,7 @@ The command line to generate local AS events will be of the form:
 
 ### Example
 ```
-python3 TGStools.py calScoreD -c K140 -t K510,SEC -p TEST
+python3 TGStools.py CalScoreD -c K140 -t K510,SEC -p TEST
 ```
 
 ### Output files
@@ -439,7 +482,7 @@ ENSG00000138767	ENST00000504123,ENST00000512485	ENST00000504123,ENST00000512485	
 ```
 
 ----------------------------
-## GOenrich
+## GOEnrich
 ----------------------------
 
 select top ranked genes from score_D result and conduct GO enrichment analysis
@@ -450,7 +493,7 @@ select top ranked genes from score_D result and conduct GO enrichment analysis
 
 ### Usage
 ```
-python3 TGStools.py GOenrich -i <input> -t <threshold> -n <number> -f <type> -p <prefix>
+python3 TGStools.py GOEnrich -i <input> -t <threshold> -n <number> -f <type> -p <prefix>
 ```
 List of options available:
 
@@ -466,7 +509,7 @@ List of options available:
 
 ### Example
 ```
-python3 TGStools.py GOenrich -i TEST_score_D.txt -t 0.05 -n 500 -f all -p TEST
+python3 TGStools.py GOEnrich -i TEST_score_D.txt -t 0.05 -n 500 -f all -p TEST
 ```
 
 ### Output files
