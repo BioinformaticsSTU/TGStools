@@ -31,8 +31,9 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks. TGStools include a set of applications which are classified into three categories, displaying transcripts of queried gene with multiple genomic annotations and filter transcripts, identifying non-coding transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis.
 The package has also contained test data(TEST.zip) for testing.
 
-<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/workflow.png" width = "550" height = "400"  />
+<img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/workflow.png" width = "650" height = "400"  />
 Overview of TGStools
+
 ----------------------------
 # Installation
 ----------------------------
