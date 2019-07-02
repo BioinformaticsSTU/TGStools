@@ -63,8 +63,8 @@ python3 TGStools.py subcommand options
 ```
 where the subcommand can be one of these:
 
-- **TransDisp**    :  isoforms comparison of queried gene with auxiliary annotation.
-- **StaDist**    : distances distribution of transcript-start-site (TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+- **TransDisp**    :  isoforms comparison of queried gene and display the transcripts along with multiple genomic annotations.
+- **StaDist**    : calculate distances distribution of transcript-start-site (TSS) in each full-length transcript to the closest epigenetic marks and CAGE tags.
 - **LncPred**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
 - **LncExt**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **LncExtTiss**       : extract tissue-specific lncRNA information of GTF format.
@@ -186,14 +186,14 @@ trans_dist.txt
 ----------------------------
 ## TransFilt
 ----------------------------
-This function would filter out those transcripts whose distance between its transcript-start-site to the closest histone site is larger than the threshold user gives.
+This function would filter out those transcripts whose distance between its transcript-start-site to the closest epigenetic marks and CAGE tags is larger than the cutoff user defined.
 
 ### Input files
 #### gtf file
 An annotation file in GTF format.
 
 #### transDist file
-Created by function StaDist. It contains the distance between transcript-start-site of transcript to the closest histone site.
+Created by function StaDist. It contains the distance between transcript-start-site of transcripts to the closest epigenetic marks and CAGE tags.
 
 ### Usage
 ```
@@ -202,7 +202,7 @@ python3 TGStools.py TransFilt -g <gtf> -d <distance> -t <threshold> -p <prefix>
 
 - **-g**  | **--gtf**: gtf file
 - **-d**  | **--distance**: file of distance between transcript-start-site to the closest histone site
-- **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest histone site
+- **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest epigenetic marks and CAGE tags
 - **-p**  | **--prefix**: prefix of output files
 
 ### Example
