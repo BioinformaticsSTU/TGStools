@@ -11,7 +11,7 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
    * [Command and subcommand structure](#command-and-subcommand-structure)
       * [TransDisp](#TransDisp)
       * [StaDist](#StaDist)
-	  * [TransFilt](#TransFilt)
+      * [TransFilt](#TransFilt)
       * [LncPred](#LncPred)
       * [LncExt](#LncExt)
       * [LncExtTiss](#LncExtTiss)
@@ -68,6 +68,7 @@ where the subcommand can be one of these:
 
 - **TransDisp**    :  isoforms comparison of queried gene and display the transcripts along with multiple genomic annotations.
 - **StaDist**    : calculate distances distribution of transcript-start-site (TSS) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+- **TransFilt**    : filter out those transcripts whose distance between its transcript-start-site to the closest epigenetic marks and CAGE tags is larger than the cutoff user defined. 
 - **LncPred**    : an integration classification tool of CNCI and PLEK for identifying coding or non-coding transcripts (fasta file and gtf file).
 - **LncExt**       : extract lncRNA information of GTF format based on the tanscript ID of the candidate lncRNA.
 - **LncExtTiss**       : extract tissue-specific lncRNA information of GTF format.
@@ -80,7 +81,7 @@ where the subcommand can be one of these:
 ## TransDisp
 ----------------------------
 
-By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) to get isoforms comparison of queried gene. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
+By providing GTF files, gene id and optionally trans_quant files(quantity of transcripts) ,isoforms comparison of queried gene can be gotton. Users could provide multiple annotation data(bed format) such as known transcripts, epigenetic marks and CAGE tags in the same folder. These auxiliary annotations will be used to evaluate the isoforms detected from long reads sequencing.
 
 For your convenience, we have upload epigenetic marks data in OneDrive. Uploaded data contains 3 types of histone marks from 15 tissues. You can download data [here](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU).
 
@@ -139,7 +140,7 @@ ENSG00000035141.pdf
 ## StaDist
 ----------------------------
 
-Distances distribution of transcript-start-site(TSS ) in each full-length transcript to the closest epigenetic marks and CAGE tags.
+Distances distribution of transcript-start-site(TSS) in each full-length transcript to the closest epigenetic marks and CAGE tags.
 
 **This step will cost much time and resource, we strongly recommend user to run this step at night while the computer is free.**
 
@@ -189,7 +190,7 @@ trans_dist.txt
 ----------------------------
 ## TransFilt
 ----------------------------
-This function would filter out those transcripts whose distance between its transcript-start-site to the closest epigenetic marks and CAGE tags is larger than the cutoff user defined.
+This function would filter out those transcripts of which distance between its transcript-start-site to the closest epigenetic marks and CAGE tags is larger than the cutoff user defined.
 
 ### Input files
 #### gtf file
