@@ -446,7 +446,8 @@ TEST_barh_align.png
 select the most spliced genes based on a score_D of each gene.
 In order to quantify the differential isoform usage between cells, we defined the score D of each gene as follows:
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/formula.png"  />
-where gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
+
+Gene j has isoform set a , and set b respectively in cell line X and Y ; c is the number of isoform intersection for set a and set b; d is the number of isoform union for set a and set b. Thus D sums up scores when comparing the control sample and treated samples.
 Genes with a higher D value are more diversely spliced.
 
 ### Input files
