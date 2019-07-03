@@ -28,8 +28,10 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 # Overview
 ----------------------------
 
-Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks. TGStools include a set of applications which are classified into three categories, displaying transcripts of queried gene with multiple genomic annotations and filter transcripts, identifying non-coding transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis(overview is shown below).
-The package has also contained test data(TEST.zip) for testing.
+Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks. TGStools include a set of applications which are classified into three categories, displaying transcripts of queried gene with multiple genomic annotations and filter transcripts, identifying non-coding transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis(overview is shown below).  
+For your convenience, the package has also contained test data(TEST.zip) for testing. [Supplement data(gtfAnnotation.gtf)
+](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
+) and [3 types of histone marks from 15 tissues](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU) have uploaded in OneDrive.
 
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/workflow.png" width = "750" height = "400"  />
 
@@ -44,7 +46,7 @@ Conda should be installed and activate.
 conda create -n python3 python=3.5
 source activate python3
 ```
-Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in OneDrive and you can download supplement data 
+Because github has data upload limit, we have upload ***supplement data (gtfAnnotation.gtf)*** in OneDrive, so you can download supplement data 
 [here](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
 ) and then put this file in ***source*** directory.
 After conda environment has been activated, TGStools can be installed through command below.
@@ -205,7 +207,7 @@ python3 TGStools.py TransFilt -g <gtf> -d <distance> -t <threshold> -p <prefix>
 ```
 
 - **-g**  | **--gtf**: gtf file
-- **-d**  | **--distance**: file of distance between transcript-start-site to the closest histone site
+- **-d**  | **--distance**: file of distance between transcript-start-site to the closest epigenetic marks and CAGE tags
 - **-t**  | **--threshold**: threshold for distance between transcript-start-site of transcript to the closest epigenetic marks and CAGE tags
 - **-p**  | **--prefix**: prefix of output files
 
