@@ -29,9 +29,9 @@ TGStools is a bioinformatics suit to facilitate transcriptome analysis of long r
 ----------------------------
 
 Third generation sequencing can de novo detect long reads of several thousand base pairs, thus provides a global view of the full length transcriptome. But due to less sequencing accurate rate, it often yields many spurious transcripts. It's important to prioritize the results by a visualization framework that automatically integrates rich annotation information with known genomic features. Therefore, we developed TGStools, a bioinformatics suit to facilitate routine tasks. TGStools include a set of applications which are classified into three categories, displaying transcripts of queried gene with multiple genomic annotations and filter transcripts, identifying non-coding transcripts and detecting the shifted types of alternative splicing in post transcriptome analysis(overview is shown below).  
-For your convenience, the package has also contained test data(TEST.zip) for testing. [Supplement data(gtfAnnotation.gtf)
-](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
-) and [3 types of histone marks from 15 tissues](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU) have uploaded in OneDrive.
+For your convenience, the package has also contained test data(TEST.zip) for testing. Supplement data([gtfAnnotation.gtf](https://stumail-my.sharepoint.cn/:u:/g/personal/d_z_chen_stu_edu_cn/ERG1zRvBkVFAn7mCyLeNvVoBGVbslQZQJIy-FUhF3LuGtA?e=bcgdYa
+))
+ and [epigenetic marks data](https://stumail-my.sharepoint.cn/:f:/g/personal/d_z_chen_stu_edu_cn/Enfeh4BW0vFJhi7cCsFaTUEBWimU5c5BH0ndF5SSw2TyLw?e=TLflsU) which contains 3 types of histone marks from 15 tissues have uploaded in OneDrive.
 
 <img src="https://github.com/BioinformaticsSTU/TGStools/blob/master/img/workflow.png" width = "750" height = "400"  />
 
