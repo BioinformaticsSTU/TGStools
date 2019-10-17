@@ -103,7 +103,7 @@ def GOenrich(input, threshold, number, type, prefix):
 			words=line.split("\t");
 			term=words[1];
 			p_value=float(words[4]);
-			genes_num=len(words[4].split(";"))
+			genes_num=len(words[9].split(";"))
 			if(p_value<p_threshold):
 				tmp=term.split(" ");
 				TERMS.append(tmp[-1].strip('(').strip(')'));
